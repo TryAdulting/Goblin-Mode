@@ -1,0 +1,3315 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Goblin Mode — ADHD & Autism Toolkit</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f5f3ff;
+  --bg2: #ede9ff;
+  --bg3: #f0eeff;
+  --card: #ffffff;
+  --card2: #f8f6ff;
+  --border: #ddd6fe;
+  --border2: #c4b5fd;
+  --text: #1e1433;
+  --text-muted: #7c6fa0;
+  --text-soft: #5b4d7a;
+  --accent: #7c3aed;
+  --accent2: #6d28d9;
+  --accent3: #4f46e5;
+  --green: #059669;
+  --yellow: #d97706;
+  --red: #dc2626;
+  --orange: #ea580c;
+  --pink: #db2777;
+  --glow: rgba(124,58,237,0.08);
+  --card-shadow: 0 2px 0 rgba(0,0,0,0.05), 0 4px 16px rgba(109,40,217,0.07);
+  --card-shadow-hover: 0 6px 0 rgba(0,0,0,0.07), 0 12px 32px rgba(109,40,217,0.12);
+}
+/* ── DARK THEME ── */
+body.dark-mode {
+  --bg: #0f0e11; --bg2: #16141a; --bg3: #201d28; --card: #1d1a24; --card2: #252130;
+  --border: #3a3548; --border2: #504a68; --text: #f4f0ff; --text-muted: #a89fc2;
+  --text-soft: #d4ccea; --accent: #c084fc; --accent2: #a78bfa; --accent3: #818cf8;
+  --green: #6ee7b7; --yellow: #fcd34d; --red: #f87171; --orange: #fb923c; --pink: #f472b6;
+  --glow: rgba(192,132,252,0.13);
+  --card-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  --card-shadow-hover: 0 6px 24px rgba(0,0,0,0.5);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:'DM Mono',monospace;font-size:14px;line-height:1.7;min-height:100vh;overflow-x:hidden;transition:background .25s,color .25s}
+body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 80% 50% at 10% 0%,rgba(124,58,237,.07) 0%,transparent 55%),radial-gradient(ellipse 60% 50% at 90% 100%,rgba(109,40,217,.05) 0%,transparent 55%);pointer-events:none;z-index:0}
+body.dark-mode::before{background:radial-gradient(ellipse 80% 50% at 20% 10%,rgba(120,80,200,.07) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(99,60,180,.05) 0%,transparent 60%)}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;background:rgba(245,243,255,.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 1.5rem;height:56px;gap:1rem}
+body.dark-mode nav{background:rgba(15,14,17,.9)}
+.nav-logo{font-family:'Fraunces',serif;font-size:1.2rem;font-weight:600;color:var(--accent);white-space:nowrap;display:flex;align-items:center;gap:.4rem}
+.nav-links{display:flex;gap:.15rem;overflow-x:auto;scrollbar-width:none;flex-wrap:nowrap}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{color:var(--text-muted);text-decoration:none;padding:.35rem .7rem;border-radius:6px;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase;transition:all .2s;white-space:nowrap}
+.nav-links a:hover,.nav-links a.active{color:var(--accent);background:var(--glow)}
+
+/* HERO */
+.hero{position:relative;z-index:1;text-align:center;padding:4rem 2rem 2.5rem}
+.hero-tag{display:inline-block;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(192,132,252,.3);padding:.3rem .8rem;border-radius:20px;margin-bottom:1.25rem;background:rgba(192,132,252,.05)}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:300;line-height:1.15;margin-bottom:.9rem}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero p{color:var(--text);font-size:.95rem;max-width:460px;margin:0 auto 2rem;line-height:1.9}
+.hero-chips{display:flex;gap:.6rem;justify-content:center;flex-wrap:wrap}
+.tool-chip{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:.45rem .9rem;font-size:.72rem;color:var(--text-soft);cursor:pointer;transition:all .2s;text-decoration:none}
+.tool-chip:hover{border-color:var(--accent);color:var(--accent);background:var(--glow);transform:translateY(-1px)}
+
+/* SECTION */
+.section{position:relative;z-index:1;max-width:860px;margin:0 auto 3.5rem;padding:0 1.25rem}
+.section-header{display:flex;align-items:center;gap:.9rem;margin-bottom:1.25rem}
+.section-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;flex-shrink:0;border:1px solid var(--border)}
+.icon-purple{background:rgba(192,132,252,.1);border-color:rgba(192,132,252,.3)}
+.icon-green{background:rgba(110,231,183,.08);border-color:rgba(110,231,183,.25)}
+.icon-blue{background:rgba(129,140,248,.08);border-color:rgba(129,140,248,.25)}
+.icon-yellow{background:rgba(252,211,77,.08);border-color:rgba(252,211,77,.25)}
+.icon-pink{background:rgba(244,114,182,.08);border-color:rgba(244,114,182,.25)}
+.icon-orange{background:rgba(251,146,60,.08);border-color:rgba(251,146,60,.25)}
+.icon-red{background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.25)}
+.section-header-text h2{font-family:'Fraunces',serif;font-size:1.45rem;font-weight:400}
+.section-header-text p{font-size:.78rem;color:var(--text-soft);margin-top:.1rem}
+
+/* CARD */
+.card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.6rem;transition:border-color .2s,box-shadow .2s;box-shadow:var(--card-shadow)}
+.card:focus-within{border-color:var(--border2)}
+.divider{height:1px;background:var(--border);margin:1.2rem 0}
+
+/* FORM */
+label{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);margin-bottom:.45rem;font-weight:500}
+input[type=text],input[type=number],textarea,select{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'DM Mono',monospace;font-size:.83rem;padding:.65rem .85rem;outline:none;transition:border-color .2s;resize:vertical}
+input[type=text]:focus,input[type=number]:focus,textarea:focus,select:focus{border-color:var(--accent2)}
+textarea{min-height:80px}
+select option{background:var(--bg3)}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.45rem;padding:.6rem 1.2rem;border-radius:10px;border:none;cursor:pointer;font-family:'DM Mono',monospace;font-size:.8rem;font-weight:500;letter-spacing:.02em;transition:all .2s}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:600}
+.btn-primary:hover{transform:translateY(-1px);filter:brightness(1.1)}
+.btn-ghost{background:var(--bg3);border:1px solid var(--border);color:var(--text-soft)}
+.btn-ghost:hover{border-color:var(--border2);color:var(--text)}
+.btn-sm{padding:.4rem .8rem;font-size:.72rem}
+.btn-green{background:rgba(110,231,183,.15);border:1px solid rgba(110,231,183,.3);color:var(--green)}
+.btn-yellow{background:rgba(252,211,77,.12);border:1px solid rgba(252,211,77,.3);color:var(--yellow)}
+.row{display:flex;gap:.7rem}
+.row>*{flex:1}
+
+/* NOTICE */
+.notice{background:rgba(192,132,252,.06);border:1px solid rgba(192,132,252,.15);border-radius:10px;padding:.7rem 1rem;font-size:.78rem;color:var(--text-soft);margin-bottom:1rem;line-height:1.7}
+
+/* OUTPUT */
+.output-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:.7rem}
+.output-title{font-size:.72rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-soft)}
+.pulse{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--green);margin-right:.4rem;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+/* FADE SLIDE ANIM */
+@keyframes fadeSlide{from{opacity:0;transform:translateX(-6px)}to{opacity:1;transform:translateX(0)}}
+
+/* ─── ENERGY SELECTOR ─── */
+.energy-selector{display:grid;grid-template-columns:repeat(5,1fr);gap:.45rem;margin-bottom:1rem}
+.energy-btn{padding:.55rem .2rem;border-radius:10px;border:1px solid var(--border);background:var(--bg3);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:.68rem;cursor:pointer;text-align:center;transition:all .2s}
+.energy-btn .emoji{font-size:1.3rem;display:block;margin-bottom:.15rem}
+.energy-btn.sel-1{border-color:var(--red);background:rgba(248,113,113,.1);color:var(--red)}
+.energy-btn.sel-2{border-color:var(--orange);background:rgba(251,146,60,.1);color:var(--orange)}
+.energy-btn.sel-3{border-color:var(--yellow);background:rgba(252,211,77,.1);color:var(--yellow)}
+.energy-btn.sel-4{border-color:var(--accent);background:rgba(192,132,252,.1);color:var(--accent)}
+.energy-btn.sel-5{border-color:var(--green);background:rgba(110,231,183,.1);color:var(--green)}
+
+/* ─── SCHEDULE ─── */
+.schedule-output{margin-top:1.2rem;display:none}
+.schedule-block{display:flex;gap:.9rem;align-items:flex-start;padding:.7rem 0;border-bottom:1px solid var(--border);animation:fadeSlide .3s ease both}
+.schedule-block:last-child{border-bottom:none}
+.schedule-time{font-size:.7rem;color:var(--accent);min-width:68px;padding-top:.2rem;font-weight:500}
+.schedule-label{font-size:.83rem;color:var(--text);font-weight:500}
+.schedule-note{font-size:.72rem;color:var(--text-soft);margin-top:.1rem;font-style:italic}
+.schedule-tag{display:inline-block;font-size:.62rem;padding:.12rem .45rem;border-radius:20px;margin-left:.45rem;vertical-align:middle}
+.tag-hard{background:rgba(192,132,252,.15);color:var(--accent)}
+.tag-light{background:rgba(110,231,183,.12);color:var(--green)}
+.tag-break{background:rgba(252,211,77,.12);color:var(--yellow)}
+.tag-self{background:rgba(251,146,60,.12);color:var(--orange)}
+
+/* ─── TASK GOBLIN ─── */
+.task-list{list-style:none;margin-top:1.2rem;display:none}
+.task-item{display:flex;align-items:flex-start;gap:.7rem;padding:.7rem;border-radius:10px;background:var(--bg3);border:1px solid var(--border);margin-bottom:.45rem;animation:fadeSlide .25s ease both;cursor:pointer;transition:all .2s}
+.task-item:hover{border-color:var(--border2)}
+.task-item.done{opacity:.4;text-decoration:line-through}
+.task-check{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:.78rem;transition:all .2s}
+.task-item.done .task-check{background:var(--green);border-color:var(--green);color:#0f0e17}
+.task-text{font-size:.83rem;color:var(--text-soft);flex:1}
+.task-step{font-size:.72rem;color:var(--text-soft);margin-top:.1rem}
+.task-progress{height:3px;background:var(--border);border-radius:2px;margin-top:1rem;overflow:hidden;display:none}
+.task-progress-fill{height:100%;background:linear-gradient(90deg,var(--accent),var(--green));border-radius:2px;transition:width .4s ease}
+
+/* ─── FOCUS TIMER ─── */
+.mode-tabs{display:flex;gap:.35rem;margin-bottom:1.2rem;background:var(--bg3);border-radius:10px;padding:.28rem;border:1px solid var(--border)}
+.mode-tab{flex:1;padding:.45rem;border-radius:8px;border:none;background:transparent;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:.7rem;cursor:pointer;transition:all .2s;text-align:center}
+.mode-tab.active{background:var(--card2);color:var(--accent);border:1px solid var(--border)}
+.timer-display{text-align:center;padding:1.8rem 0 1.25rem}
+.timer-ring-wrap{position:relative;width:175px;height:175px;margin:0 auto 1.2rem}
+.timer-svg{transform:rotate(-90deg);width:175px;height:175px}
+.timer-track{fill:none;stroke:var(--border);stroke-width:6}
+.timer-fill{fill:none;stroke:url(#timerGrad);stroke-width:6;stroke-linecap:round;stroke-dasharray:502;stroke-dashoffset:0;transition:stroke-dashoffset 1s linear}
+.timer-center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.timer-time{font-family:'Fraunces',serif;font-size:2.3rem;font-weight:300;color:var(--text);line-height:1;letter-spacing:-.02em}
+.timer-phase{font-size:.63rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.1em;margin-top:.2rem}
+.timer-controls{display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.timer-settings{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-bottom:1rem}
+.timer-stats{display:flex;justify-content:center;gap:2rem;font-size:.7rem;color:var(--text-muted)}
+.timer-stat-val{display:block;font-family:'Fraunces',serif;font-size:1.35rem;color:var(--text);text-align:center;line-height:1.2}
+.breathing-widget{flex-direction:column;align-items:center;padding:1rem 0;display:none}
+.breath-circle{width:95px;height:95px;border-radius:50%;background:radial-gradient(circle,rgba(192,132,252,.3),rgba(167,139,250,.05));border:2px solid rgba(192,132,252,.4);display:flex;align-items:center;justify-content:center;font-size:.78rem;color:var(--accent);margin-bottom:1rem;transition:transform .1s}
+.breath-circle.inhale{animation:breatheIn 4s ease-in-out forwards}
+.breath-circle.hold{animation:none;transform:scale(1.4)}
+.breath-circle.exhale{animation:breatheOut 6s ease-in-out forwards}
+@keyframes breatheIn{from{transform:scale(1)}to{transform:scale(1.4)}}
+@keyframes breatheOut{from{transform:scale(1.4)}to{transform:scale(1)}}
+.breath-text{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--text-soft);font-style:italic}
+
+/* ─── BRAIN DUMP ─── */
+.dump-categories{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;margin-top:1.2rem;display:none}
+.dump-cat{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:.9rem}
+.dump-cat-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.6rem;font-weight:500}
+.dump-cat-title.do{color:var(--green)}
+.dump-cat-title.feel{color:var(--pink)}
+.dump-cat-title.later{color:var(--accent)}
+.dump-cat-title.release{color:var(--text-muted)}
+.dump-items{list-style:none}
+.dump-items li{font-size:.78rem;color:var(--text-soft);padding:.3rem 0;border-bottom:1px solid var(--border);animation:fadeSlide .25s ease both}
+.dump-items li:last-child{border-bottom:none}
+.dump-items li::before{margin-right:.4rem;opacity:.6}
+.dump-items.do li::before{content:'→'}
+.dump-items.feel li::before{content:'♡'}
+.dump-items.later li::before{content:'◷'}
+.dump-items.release li::before{content:'~'}
+
+/* ─── WHAT'S THE ONE THING ─── */
+.one-thing-result{display:none;text-align:center;padding:1.5rem;background:var(--bg3);border:1px solid var(--border);border-radius:14px;margin-top:1.2rem;animation:fadeSlide .35s ease}
+.one-thing-task{font-family:'Fraunces',serif;font-size:1.5rem;font-weight:300;color:var(--text);font-style:italic;margin-bottom:.5rem}
+.one-thing-why{font-size:.75rem;color:var(--text-muted);line-height:1.7}
+.one-thing-encourage{font-size:.8rem;color:var(--accent);margin-top:.8rem}
+
+/* ─── TRANSITION TIMER ─── */
+.transition-display{text-align:center;padding:1.5rem 0 1rem}
+.transition-big{font-family:'Fraunces',serif;font-size:3.5rem;font-weight:300;color:var(--text);letter-spacing:-.03em;line-height:1}
+.transition-label{font-size:.7rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.12em;margin-top:.3rem}
+.transition-bar-wrap{background:var(--bg3);border-radius:100px;height:18px;overflow:hidden;margin:1.2rem 0;border:1px solid var(--border)}
+.transition-bar{height:100%;border-radius:100px;background:linear-gradient(90deg,var(--green),var(--accent));transition:width 1s linear;width:100%}
+.nudge-list{list-style:none}
+.nudge-item{display:flex;align-items:center;gap:.8rem;padding:.65rem .8rem;border-radius:10px;margin-bottom:.4rem;font-size:.8rem;background:var(--bg3);border:1px solid var(--border);transition:all .5s}
+.nudge-item.fired{border-color:var(--accent);background:var(--glow);color:var(--accent)}
+.nudge-dot{width:8px;height:8px;border-radius:50%;background:var(--border2);flex-shrink:0;transition:all .3s}
+.nudge-item.fired .nudge-dot{background:var(--accent);box-shadow:0 0 8px var(--accent)}
+.preset-btns{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:.9rem}
+.preset-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:.35rem .75rem;font-size:.72rem;color:var(--text-muted);cursor:pointer;transition:all .2s;font-family:'DM Mono',monospace}
+.preset-btn:hover{border-color:var(--accent2);color:var(--accent)}
+
+/* ─── SCRIPT BUILDER ─── */
+.script-result{display:none;margin-top:1.2rem;animation:fadeSlide .3s ease}
+.script-box{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.1rem;line-height:1.85;font-size:.83rem;color:var(--text-soft);white-space:pre-wrap;font-family:'DM Mono',monospace}
+.script-note{font-size:.72rem;color:var(--text-muted);margin-top:.6rem;font-style:italic}
+.situation-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin-bottom:.9rem}
+.sit-btn{padding:.55rem .7rem;border-radius:9px;border:1px solid var(--border);background:var(--bg3);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:.72rem;cursor:pointer;text-align:left;transition:all .2s}
+.sit-btn:hover,.sit-btn.active{border-color:var(--accent2);color:var(--accent);background:var(--glow)}
+
+/* ─── SENSORY TOOLKIT ─── */
+.sensory-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:.9rem}
+.sensory-section{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1rem}
+.sensory-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.7rem;font-weight:500}
+.sensory-chips{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.6rem}
+.sensory-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.3rem .65rem;border-radius:20px;font-size:.72rem;cursor:pointer;border:1px solid var(--border);background:var(--card);color:var(--text-soft);transition:all .2s;user-select:none}
+.sensory-chip:hover{border-color:var(--border2)}
+.sensory-chip.saved{background:var(--glow);border-color:var(--accent2);color:var(--accent)}
+.sensory-chip .remove{opacity:.5;font-size:.65rem;margin-left:.1rem;cursor:pointer}
+.sensory-chip .remove:hover{opacity:1;color:var(--red)}
+.sensory-add{display:flex;gap:.4rem;margin-top:.5rem}
+.sensory-add input{font-size:.75rem;padding:.4rem .65rem}
+.sensory-add button{padding:.4rem .7rem;font-size:.75rem;white-space:nowrap}
+
+/* ─── WIND DOWN ─── */
+.winddown-steps{list-style:none;margin-top:.9rem}
+.winddown-step{display:flex;align-items:center;gap:.8rem;padding:.75rem;border-radius:10px;background:var(--bg3);border:1px solid var(--border);margin-bottom:.45rem;animation:fadeSlide .25s ease both}
+.winddown-step .step-emoji{font-size:1.3rem;flex-shrink:0}
+.winddown-step .step-text{flex:1}
+.winddown-step .step-name{font-size:.83rem;color:var(--text)}
+.winddown-step .step-note{font-size:.73rem;color:var(--text-soft);margin-top:.1rem}
+.winddown-step .step-dur{font-size:.7rem;color:var(--accent);white-space:nowrap}
+.winddown-step .step-check{width:20px;height:20px;border-radius:6px;border:1.5px solid var(--border2);flex-shrink:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s}
+.winddown-step.done .step-check{background:var(--green);border-color:var(--green);color:#0f0e17}
+.winddown-step.done .step-name{opacity:.5;text-decoration:line-through}
+.builder-step-row{display:grid;grid-template-columns:20px 1fr 1fr auto;gap:.5rem;align-items:end;margin-bottom:.5rem}
+.builder-step-row input{font-size:.75rem}
+.builder-step-row select{font-size:.75rem;padding:.42rem .65rem}
+.saved-badge{display:inline-block;background:rgba(110,231,183,.12);border:1px solid rgba(110,231,183,.25);border-radius:20px;color:var(--green);font-size:.68rem;padding:.2rem .6rem;margin-left:.6rem;animation:fadeSlide .3s ease}
+
+/* ─── SPARK (PARALYSIS BUSTER) ─── */
+.spark-card{background:var(--bg3);border:1px solid var(--border);border-radius:16px;padding:2rem;text-align:center;min-height:160px;display:flex;flex-direction:column;align-items:center;justify-content:center;transition:all .3s;margin-bottom:1rem}
+.spark-emoji{font-size:3rem;margin-bottom:.8rem;display:block}
+.spark-activity{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:300;color:var(--text);font-style:italic;margin-bottom:.4rem}
+.spark-note{font-size:.75rem;color:var(--text-muted);line-height:1.7;max-width:380px}
+.spark-tag{display:inline-block;font-size:.65rem;padding:.2rem .6rem;border-radius:20px;margin-top:.8rem;border:1px solid var(--border)}
+.tag-physical{background:rgba(110,231,183,.1);border-color:rgba(110,231,183,.3);color:var(--green)}
+.tag-creative{background:rgba(192,132,252,.1);border-color:rgba(192,132,252,.3);color:var(--accent)}
+.tag-comfort{background:rgba(251,146,60,.1);border-color:rgba(251,146,60,.3);color:var(--orange)}
+.tag-distract{background:rgba(129,140,248,.1);border-color:rgba(129,140,248,.3);color:var(--accent3)}
+.filter-row{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1rem}
+.filter-btn{padding:.35rem .8rem;border-radius:20px;border:1px solid var(--border);background:var(--bg3);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:.7rem;cursor:pointer;transition:all .2s}
+.filter-btn.active{background:var(--glow);border-color:var(--accent2);color:var(--accent)}
+
+/* FOOTER */
+.footer{text-align:center;padding:2.5rem 1.5rem;color:var(--text-muted);font-size:.7rem;border-top:1px solid var(--border);position:relative;z-index:1;margin-top:2rem}
+.footer span{color:var(--accent)}
+
+::-webkit-scrollbar{width:5px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+
+@media(max-width:600px){
+  .sensory-grid,.dump-categories{grid-template-columns:1fr}
+  .situation-grid{grid-template-columns:1fr}
+  .builder-step-row{grid-template-columns:1fr 1fr auto}
+  .nav-links{display:none}
+}
+
+/* ─── BIONIC READING ─── */
+.bionic-on b.bio {
+  font-weight: 700;
+  color: var(--text);
+}
+b.bio {
+  font-weight: 400; /* hidden until enabled */
+}
+.bionic-on .bio-word {
+  color: var(--text-soft);
+}
+.bio-toggle {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: .3rem .8rem;
+  font-size: .68rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  letter-spacing: .04em;
+  transition: all .2s;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.bio-toggle:hover { border-color: var(--accent2); color: var(--accent); }
+.bio-toggle.on { background: var(--glow); border-color: var(--accent2); color: var(--accent); }
+
+
+/* ─── AUTH & PROFILE ─── */
+.auth-overlay{position:fixed;inset:0;background:rgba(10,9,13,.92);backdrop-filter:blur(12px);z-index:1000;display:flex;align-items:center;justify-content:center;padding:1rem}
+.auth-box{background:var(--card);border:1px solid var(--border2);border-radius:20px;padding:2.2rem;width:100%;max-width:400px;position:relative}
+.auth-logo{font-family:'Fraunces',serif;font-size:2rem;color:var(--accent);text-align:center;margin-bottom:.3rem}
+.auth-sub{text-align:center;font-size:.78rem;color:var(--text-muted);margin-bottom:1.8rem;line-height:1.6}
+.auth-tabs{display:flex;background:var(--bg3);border-radius:10px;padding:.25rem;gap:.3rem;margin-bottom:1.4rem;border:1px solid var(--border)}
+.auth-tab{flex:1;padding:.45rem;border-radius:8px;border:none;background:transparent;color:var(--text-muted);font-family:'DM Mono',monospace;font-size:.75rem;cursor:pointer;transition:all .2s;text-align:center}
+.auth-tab.active{background:var(--card2);color:var(--accent);border:1px solid var(--border)}
+.auth-field{margin-bottom:.9rem}
+.auth-field label{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--text-soft);margin-bottom:.4rem;display:block}
+.auth-field input{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:10px;color:var(--text);font-family:'DM Mono',monospace;font-size:.85rem;padding:.7rem .9rem;outline:none;transition:border-color .2s}
+.auth-field input:focus{border-color:var(--accent2)}
+.auth-error{background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);border-radius:8px;padding:.55rem .8rem;font-size:.75rem;color:var(--red);margin-bottom:.9rem;display:none}
+.auth-success{background:rgba(110,231,183,.1);border:1px solid rgba(110,231,183,.3);border-radius:8px;padding:.55rem .8rem;font-size:.75rem;color:var(--green);margin-bottom:.9rem;display:none}
+.btn-auth{width:100%;padding:.75rem;border-radius:10px;border:none;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0f0e17;font-family:'DM Mono',monospace;font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;margin-top:.3rem}
+.btn-auth:hover{filter:brightness(1.1);transform:translateY(-1px)}
+
+/* Profile button in nav */
+.profile-btn{display:flex;align-items:center;gap:.5rem;background:var(--bg3);border:1px solid var(--border);border-radius:20px;padding:.32rem .8rem;font-size:.72rem;color:var(--text-soft);cursor:pointer;font-family:'DM Mono',monospace;transition:all .2s;white-space:nowrap;flex-shrink:0}
+.profile-btn:hover{border-color:var(--accent2);color:var(--accent)}
+.profile-avatar{width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#0f0e17;font-weight:700;flex-shrink:0}
+
+/* Profile dropdown */
+.profile-dropdown{position:absolute;top:58px;right:1.2rem;background:var(--card);border:1px solid var(--border2);border-radius:14px;padding:.6rem;min-width:220px;z-index:300;box-shadow:0 8px 32px rgba(0,0,0,.4);display:none}
+.profile-dropdown.open{display:block;animation:fadeSlide .2s ease}
+.profile-header{padding:.6rem .7rem .9rem;border-bottom:1px solid var(--border);margin-bottom:.4rem}
+.profile-name{font-family:'Fraunces',serif;font-size:1.1rem;color:var(--text)}
+.profile-handle{font-size:.7rem;color:var(--text-muted);margin-top:.1rem}
+.profile-menu-item{display:flex;align-items:center;gap:.6rem;padding:.55rem .7rem;border-radius:8px;font-size:.78rem;color:var(--text-soft);cursor:pointer;transition:all .2s;border:none;background:transparent;font-family:'DM Mono',monospace;width:100%;text-align:left}
+.profile-menu-item:hover{background:var(--bg3);color:var(--text)}
+.profile-menu-item.danger{color:var(--red)}
+.profile-menu-item.danger:hover{background:rgba(248,113,113,.1)}
+
+/* Profile page */
+.profile-page{position:fixed;inset:0;background:var(--bg);z-index:500;overflow-y:auto;display:none}
+.profile-page.open{display:block;animation:fadeSlide .25s ease}
+.profile-page-inner{max-width:640px;margin:0 auto;padding:2rem 1.5rem 4rem}
+.profile-back{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-muted);font-size:.78rem;cursor:pointer;margin-bottom:2rem;background:none;border:none;font-family:'DM Mono',monospace;transition:color .2s}
+.profile-back:hover{color:var(--accent)}
+.profile-avatar-big{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#0f0e17;font-weight:700;margin-bottom:1rem}
+.pref-section{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.4rem;margin-bottom:1.2rem}
+.pref-title{font-family:'Fraunces',serif;font-size:1.1rem;font-weight:400;margin-bottom:.3rem}
+.pref-desc{font-size:.75rem;color:var(--text-muted);margin-bottom:1.1rem;line-height:1.6}
+.pref-row{display:flex;align-items:center;justify-content:space-between;padding:.55rem 0;border-bottom:1px solid var(--border)}
+.pref-row:last-child{border-bottom:none}
+.pref-row-label{font-size:.82rem;color:var(--text-soft)}
+.pref-row-sub{font-size:.7rem;color:var(--text-muted);margin-top:.1rem}
+.toggle-switch{position:relative;width:38px;height:22px;flex-shrink:0}
+.toggle-switch input{opacity:0;width:0;height:0;position:absolute}
+.toggle-slider{position:absolute;inset:0;background:var(--border2);border-radius:11px;cursor:pointer;transition:background .2s}
+.toggle-slider::before{content:'';position:absolute;width:16px;height:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:transform .2s}
+.toggle-switch input:checked+.toggle-slider{background:var(--accent)}
+.toggle-switch input:checked+.toggle-slider::before{transform:translateX(16px)}
+.color-picker-row{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
+.color-swatch{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all .2s;flex-shrink:0}
+.color-swatch.selected{border-color:var(--text);transform:scale(1.15)}
+.save-prefs-btn{margin-top:1.1rem}
+
+
+/* ─── DRAG AND DROP ─── */
+.draggable { cursor: grab; }
+.draggable:active { cursor: grabbing; }
+.drag-handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  color: var(--border2);
+  font-size: 1rem;
+  cursor: grab;
+  flex-shrink: 0;
+  user-select: none;
+  transition: color .2s;
+}
+.drag-handle:hover { color: var(--text-muted); }
+.drag-handle:active { cursor: grabbing; }
+.winddown-step.dragging {
+  opacity: 0.4;
+  border-style: dashed;
+}
+.winddown-step.drag-over {
+  border-color: var(--accent);
+  background: var(--glow);
+  transform: scale(1.01);
+}
+.builder-step-row.dragging { opacity: 0.4; border-radius: 10px; border: 1px dashed var(--border2); }
+.builder-step-row.drag-over { outline: 2px solid var(--accent); border-radius: 10px; }
+
+
+/* ─── PAGE NAVIGATION ─── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* Home / menu page */
+#page-home { position: relative; z-index: 1; max-width: 860px; margin: 0 auto; padding: 0 1.25rem 4rem; }
+
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:.85rem;margin-top:1.5rem}
+.tool-card{border:2px solid transparent;border-radius:20px;padding:1.1rem 1rem;cursor:pointer;transition:transform .17s cubic-bezier(.34,1.56,.64,1),box-shadow .17s;text-decoration:none;display:flex;align-items:center;gap:.85rem;position:relative;overflow:hidden;box-shadow:0 2px 0 rgba(0,0,0,0.06),0 4px 12px rgba(0,0,0,0.05)}
+.tool-card:hover{transform:translateY(-3px) scale(1.013);box-shadow:0 6px 0 rgba(0,0,0,0.07),0 14px 28px rgba(0,0,0,0.09)}
+.tool-card:active{transform:translateY(0) scale(0.98)}
+.tool-card--purple{background:linear-gradient(140deg,#ede9fe,#ddd6fe);border-color:#c4b5fd}
+.tool-card--green{background:linear-gradient(140deg,#dcfce7,#bbf7d0);border-color:#86efac}
+.tool-card--blue{background:linear-gradient(140deg,#dbeafe,#bfdbfe);border-color:#93c5fd}
+.tool-card--orange{background:linear-gradient(140deg,#ffedd5,#fed7aa);border-color:#fdba74}
+.tool-card--yellow{background:linear-gradient(140deg,#fef9c3,#fef08a);border-color:#fde047}
+.tool-card--pink{background:linear-gradient(140deg,#fce7f3,#fbcfe8);border-color:#f9a8d4}
+.tool-card--teal{background:linear-gradient(140deg,#ccfbf1,#99f6e4);border-color:#5eead4}
+.tool-card--indigo{background:linear-gradient(140deg,#e0e7ff,#c7d2fe);border-color:#a5b4fc}
+.tool-card--red{background:linear-gradient(140deg,#fee2e2,#fecaca);border-color:#fca5a5}
+.tool-card--slate{background:linear-gradient(140deg,#f1f5f9,#e2e8f0);border-color:#cbd5e1}
+body.dark-mode .tool-card--purple{background:linear-gradient(140deg,#2e1a4a,#3b2060);border-color:#6d28d9}
+body.dark-mode .tool-card--green{background:linear-gradient(140deg,#052e16,#14532d);border-color:#16a34a}
+body.dark-mode .tool-card--blue{background:linear-gradient(140deg,#0c1a3a,#1e3a5f);border-color:#1d4ed8}
+body.dark-mode .tool-card--orange{background:linear-gradient(140deg,#2c1400,#431d00);border-color:#c2410c}
+body.dark-mode .tool-card--yellow{background:linear-gradient(140deg,#2a1f00,#3d2d00);border-color:#a16207}
+body.dark-mode .tool-card--pink{background:linear-gradient(140deg,#3b0a26,#500d33);border-color:#be185d}
+body.dark-mode .tool-card--teal{background:linear-gradient(140deg,#022c22,#134e4a);border-color:#0f766e}
+body.dark-mode .tool-card--indigo{background:linear-gradient(140deg,#1a1a40,#272760);border-color:#4338ca}
+body.dark-mode .tool-card--red{background:linear-gradient(140deg,#2d0a0a,#450c0c);border-color:#b91c1c}
+body.dark-mode .tool-card--slate{background:linear-gradient(140deg,#1e293b,#293548);border-color:#475569}
+.tool-card-icon{font-size:1.7rem;flex-shrink:0;width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.55);border-radius:13px;box-shadow:0 2px 5px rgba(0,0,0,0.07)}
+body.dark-mode .tool-card-icon{background:rgba(255,255,255,0.07)}
+.tool-card-body{flex:1;min-width:0}
+.tool-card-name{font-family:'Fraunces',serif;font-size:.95rem;font-weight:600;color:var(--text);margin-bottom:.1rem}
+.tool-card-desc{font-size:.7rem;color:var(--text-soft);line-height:1.5}
+.tool-card-arrow{font-size:.95rem;color:var(--text-muted);flex-shrink:0;transition:transform .17s}
+.tool-card:hover .tool-card-arrow{transform:translateX(3px)}
+
+/* Tool page wrapper */
+.tool-page-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0 1.25rem 4rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* Back breadcrumb */
+.page-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  padding-top: 0.5rem;
+}
+.page-breadcrumb span { color: var(--text-soft); }
+.page-breadcrumb .sep { opacity: 0.4; }
+
+/* Nav logo clickable */
+.nav-logo { cursor: pointer; }
+.nav-logo:hover { opacity: 0.8; }
+
+/* Hide nav-links on tool pages — replaced by back button */
+.on-tool-page .nav-links { display: none; }
+
+
+/* ─── SCRIPT BUILDER ─── */
+.sb-tone-btn {
+  padding: .42rem .9rem;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--bg3);
+  color: var(--text-muted);
+  font-family: 'DM Mono', monospace;
+  font-size: .75rem;
+  cursor: pointer;
+  transition: all .2s;
+}
+.sb-tone-btn:hover { border-color: var(--border2); color: var(--text-soft); }
+.sb-tone-btn.active {
+  background: var(--glow);
+  border-color: var(--accent2);
+  color: var(--accent);
+}
+
+
+/* ─── SCRIPT HISTORY ─── */
+.script-history-item {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: .9rem 1rem;
+  transition: border-color .2s;
+}
+.script-history-item:hover { border-color: var(--border2); }
+.script-history-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: .4rem;
+  flex-wrap: wrap;
+  gap: .4rem;
+}
+.script-history-tags {
+  display: flex;
+  gap: .35rem;
+  flex-wrap: wrap;
+}
+.script-history-tag {
+  font-size: .65rem;
+  padding: .15rem .55rem;
+  border-radius: 20px;
+  background: var(--glow);
+  border: 1px solid var(--border2);
+  color: var(--accent);
+}
+.script-history-date {
+  font-size: .68rem;
+  color: var(--text-muted);
+}
+.script-history-preview {
+  font-size: .8rem;
+  color: var(--text-soft);
+  line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.script-history-actions {
+  display: flex;
+  gap: .5rem;
+  margin-top: .65rem;
+}
+.script-history-btn {
+  font-size: .7rem;
+  padding: .28rem .65rem;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  transition: all .2s;
+}
+.script-history-btn:hover { border-color: var(--accent2); color: var(--accent); }
+.script-history-btn.danger:hover { border-color: var(--red); color: var(--red); }
+
+
+/* ─── ENERGY SCHEDULER (preview port) ─── */
+#scheduler-root .timeline-container {
+    position: relative;
+    padding-left: 2.5rem;
+    border-left: 2px dashed var(--border2);
+    margin-left: 1rem;
+}
+#scheduler-root .timeline-block {
+    position: relative;
+    margin-bottom: 0.75rem;
+    padding: 0.85rem;
+    border-radius: 1rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    transition: all 0.2s ease;
+    cursor: grab;
+    user-select: none;
+}
+#scheduler-root .timeline-block:active { cursor: grabbing; }
+#scheduler-root .timeline-block.dragging { opacity: 0.35; border-style: dashed; }
+#scheduler-root .timeline-block.drag-over { outline: 2px solid var(--accent); outline-offset: 2px; transform: scale(1.01); }
+#scheduler-root .timeline-dot {
+    position: absolute;
+    left: -2.95rem;
+    top: 1.2rem;
+    width: 14px;
+    height: 14px;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px var(--border2);
+}
+#scheduler-root .type-break { background: rgba(16,185,129,.07); border-color: rgba(16,185,129,.2); color: #6ee7b7; }
+#scheduler-root .type-buffer { background: rgba(251,146,60,.07); border-color: rgba(251,146,60,.2); border-left: 4px solid #fb923c; }
+#scheduler-root .block-controls { display:flex; align-items:center; gap:.4rem; margin-top:.6rem; flex-wrap:wrap; }
+#scheduler-root .block-ctrl-btn {
+    font-size: 10px; padding: 2px 8px; border-radius: 20px;
+    border: 1px solid var(--border); background: var(--bg3);
+    color: var(--text-muted); cursor: pointer; transition: all 0.15s;
+    font-weight: 600; font-family: 'DM Mono', monospace;
+}
+#scheduler-root .block-ctrl-btn:hover { border-color: var(--accent2); color: var(--accent); }
+#scheduler-root .block-ctrl-btn.danger:hover { border-color: var(--red,#f87171); color: var(--red,#f87171); }
+#scheduler-root .inline-edit {
+    font-size: 0.875rem; font-weight: 700; color: var(--text);
+    border: none; border-bottom: 1.5px solid var(--accent);
+    outline: none; background: transparent; width: 100%; padding: 1px 0;
+}
+#scheduler-root .dur-edit {
+    font-size: 10px; font-weight: 800; color: var(--text-muted);
+    background: var(--bg3); border: none; border-bottom: 1.5px solid var(--accent);
+    outline: none; width: 40px; text-align: center; padding: 2px 4px; border-radius: 4px;
+}
+#scheduler-root .drag-handle {
+    color: var(--border2); font-size: 1rem; padding: 0 4px;
+    cursor: grab; flex-shrink: 0; transition: color 0.15s;
+}
+#scheduler-root .drag-handle:hover { color: var(--accent); }
+#scheduler-root .type-badge {
+    font-size: 9px; font-weight: 800; text-transform: uppercase;
+    letter-spacing: .08em; padding: 2px 7px; border-radius: 20px;
+    background: var(--bg3); color: var(--text-muted);
+}
+#scheduler-root .dur-short { min-height: 60px; }
+#scheduler-root .dur-med   { min-height: 90px; }
+#scheduler-root .dur-long  { min-height: 130px; }
+/* Library tags */
+.library-tag {
+    display: inline-flex; align-items: center;
+    border: 1px solid var(--border); border-radius: 999px;
+    background: var(--bg3); overflow: hidden; transition: border-color 0.15s;
+}
+.library-tag:hover { border-color: var(--accent2); }
+.library-tag-label {
+    font-size: 11px; font-weight: 600; padding: 5px 8px 5px 10px;
+    background: transparent; color: var(--text-soft); cursor: pointer; transition: color 0.15s;
+}
+.library-tag-label:hover { color: var(--accent); }
+.library-tag-del {
+    font-size: 9px; padding: 5px 8px 5px 2px;
+    background: transparent; color: var(--border2); cursor: pointer; transition: color 0.15s;
+}
+.library-tag-del:hover { color: #f87171; }
+
+
+/* ── DARK MODE TOGGLE ── */
+.dark-toggle{display:inline-flex;align-items:center;gap:.3rem;padding:.3rem .7rem;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:.7rem;cursor:pointer;transition:all .2s;white-space:nowrap}
+.dark-toggle:hover{border-color:var(--border2);color:var(--text)}
+.dark-toggle.on{background:var(--glow);border-color:var(--accent2);color:var(--accent)}
+/* Section icons in light mode */
+body:not(.dark-mode) .icon-purple{background:#ede9ff;border-color:#c4b5fd}
+body:not(.dark-mode) .icon-green{background:#d1fae5;border-color:#6ee7b7}
+body:not(.dark-mode) .icon-blue{background:#e0e7ff;border-color:#a5b4fc}
+body:not(.dark-mode) .icon-yellow{background:#fef3c7;border-color:#fcd34d}
+body:not(.dark-mode) .icon-pink{background:#fce7f3;border-color:#f9a8d4}
+body:not(.dark-mode) .icon-orange{background:#fff7ed;border-color:#fdba74}
+body:not(.dark-mode) .icon-red{background:#fee2e2;border-color:#fca5a5}
+/* Timeline in light mode */
+body:not(.dark-mode) #scheduler-root .timeline-block{background:#fff;border-color:#ede9ff}
+body:not(.dark-mode) #scheduler-root .type-break{background:#ecfdf5;border-color:#a7f3d0;color:#065f46}
+body:not(.dark-mode) #scheduler-root .type-buffer{background:#fff7ed;border-color:#fed7aa}
+/* Notice in light */
+body:not(.dark-mode) .notice{background:#f5f3ff;border-color:#c4b5fd;color:var(--text-soft)}
+/* Auth overlay light */
+body:not(.dark-mode) .auth-overlay{background:rgba(245,243,255,0.92)}
+body:not(.dark-mode) .auth-box{background:#fff;border-color:var(--border)}
+
+
+/* ── DARK TOGGLE BTN ── */
+.dark-toggle{display:inline-flex;align-items:center;gap:.3rem;padding:.3rem .7rem;border-radius:8px;border:1px solid var(--border);background:var(--bg3);color:var(--text-muted);font-family:'DM Mono',monospace;font-size:.7rem;cursor:pointer;transition:all .2s;white-space:nowrap}
+.dark-toggle:hover{border-color:var(--border2);color:var(--text)}
+.dark-toggle.on{background:var(--glow);border-color:var(--accent2);color:var(--accent)}
+/* Section icons light mode */
+body:not(.dark-mode) .icon-purple{background:#ede9ff;border-color:#c4b5fd}
+body:not(.dark-mode) .icon-green{background:#d1fae5;border-color:#6ee7b7}
+body:not(.dark-mode) .icon-blue{background:#e0e7ff;border-color:#a5b4fc}
+body:not(.dark-mode) .icon-yellow{background:#fef3c7;border-color:#fcd34d}
+body:not(.dark-mode) .icon-pink{background:#fce7f3;border-color:#f9a8d4}
+body:not(.dark-mode) .icon-orange{background:#fff7ed;border-color:#fdba74}
+body:not(.dark-mode) .icon-red{background:#fee2e2;border-color:#fca5a5}
+/* Timeline light mode */
+body:not(.dark-mode) #scheduler-root .timeline-block{background:#fff;border-color:#ede9ff}
+body:not(.dark-mode) #scheduler-root .type-break{background:#ecfdf5;border-color:#a7f3d0;color:#065f46}
+body:not(.dark-mode) #scheduler-root .type-buffer{background:#fff7ed;border-color:#fed7aa}
+/* Inputs light */
+body:not(.dark-mode) input,body:not(.dark-mode) textarea,body:not(.dark-mode) select{background:#f8f6ff;color:#1e1433}
+/* Auth overlay light */
+body:not(.dark-mode) .auth-overlay{background:rgba(245,243,255,0.93)}
+</style>
+  <script>
+    // Apply dark mode early to prevent flash — only adds class to body, no !important override
+    (function(){
+      try{
+        if(JSON.parse(localStorage.getItem('goblin_darkMode')))
+          document.addEventListener('DOMContentLoaded', function(){
+            document.body.classList.add('dark-mode');
+          });
+      }catch(e){}
+    })();
+  </script>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo" onclick="goHome()" title="Back to menu">🧌 Goblin Mode</div>
+  <div class="nav-links">
+    <a href="#schedule" class="nav-link">Schedule</a>
+    <a href="#goblin" class="nav-link">Task Goblin</a>
+    <a href="#timer" class="nav-link">Timer</a>
+    <a href="#braindump" class="nav-link">Brain Dump</a>
+    <a href="#onething" class="nav-link">One Thing</a>
+    <a href="#transition" class="nav-link">Transition</a>
+    <a href="#sensory" class="nav-link">Sensory</a>
+    <a href="#winddown" class="nav-link">Wind-Down</a>
+    <a href="#spark" class="nav-link">Spark</a>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:.5rem;flex-shrink:0">
+    <button class="dark-toggle" id="darkToggle" onclick="toggleDarkMode()" title="Toggle dark mode">🌙 Dark</button>
+    <button class="bio-toggle" id="bioToggle" onclick="toggleBionic()" title="Toggle Bionic Reading">👁 Bionic</button>
+    <button class="profile-btn" id="profileBtn" onclick="toggleProfileDropdown()">
+      <div class="profile-avatar" id="navAvatar">?</div>
+      <span id="navName">Account</span>
+    </button>
+  </div>
+</nav>
+
+<div id="page-home" class="page active">
+  <div style="position:relative;z-index:1;text-align:center;padding:3.5rem 2rem 2.5rem">
+    <div style="display:inline-block;font-size:.68rem;letter-spacing:.15em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(192,132,252,.3);padding:.3rem .8rem;border-radius:20px;margin-bottom:1.25rem;background:rgba(192,132,252,.05)">✦ Built for ADHD & Autistic Brains</div>
+    <h1 style="font-family:'Fraunces',serif;font-size:clamp(2.2rem,5vw,3.5rem);font-weight:300;line-height:1.15;margin-bottom:.9rem">Your brain is <em style="font-style:italic;color:var(--accent)">not broken.</em><br>Your tools just weren't right.</h1>
+    <p style="color:var(--text-soft);font-size:.95rem;max-width:460px;margin:0 auto;line-height:1.9">A quiet toolkit built around how you actually work — your energy, your rhythms, your rules. Pick a tool below.</p>
+  </div>
+  <div class="tools-grid">
+    <div class="tool-card tool-card--purple" onclick="goToPage('schedule')"><div class="tool-card-icon">📅</div><div class="tool-card-body"><div class="tool-card-name">Energy Scheduler</div><div class="tool-card-desc">AI plans your day around your battery</div></div><div class="tool-card-arrow">→</div></div>
+    <div class="tool-card tool-card--green" onclick="goToPage('goblin')"><div class="tool-card-icon">🧌</div><div class="tool-card-body"><div class="tool-card-name">Task Goblin</div><div class="tool-card-desc">Break any task into tiny, doable steps</div></div><div class="tool-card-arrow">→</div></div>
+    <div class="tool-card tool-card--blue" onclick="goToPage('timer')"><div class="tool-card-icon">⏱️</div><div class="tool-card-body"><div class="tool-card-name">Focus Timer</div><div class="tool-card-desc">Pomodoro, custom, or box breathing</div></div><div class="tool-card-arrow">→</div></div>
+    <div class="tool-card tool-card--orange" onclick="goToPage('braindump')"><div class="tool-card-icon">🧠</div><div class="tool-card-body"><div class="tool-card-name">Brain Dump</div><div class="tool-card-desc">Offload your head, sort into categories</div></div><div class="tool-card-arrow">→</div></div>
+    <div class="tool-card tool-card--yellow" onclick="goToPage('onething')"><div class="tool-card-icon">🎯</div><div class="tool-card-body"><div class="tool-card-name">One Thing</div><div class="tool-card-desc">AI picks the one task to focus on now</div></div><div class="tool-card-arrow">→</div></div>
+    <div class="tool-card tool-card--pink" onclick="goToPage('transition')"><div class="tool-card-icon">🔔</div><div class="tool-card-body"><div class="tool-card-name">Transition Timer</div><div class="tool-card-desc">Gentle nudges before you need to leave</div></div><div class="tool-card-arrow">→</div></div>
+    <div class="tool-card tool-card--teal" onclick="goToPage('sensory')"><div class="tool-card-icon">🌿</div><div class="tool-card-body"><div class="tool-card-name">Sensory Toolkit</div><div class="tool-card-desc">Coping chips for overload and anxiety</div></div><div class="tool-card-arrow">→</div></div>
+    <div class="tool-card tool-card--indigo" onclick="goToPage('winddown')"><div class="tool-card-icon">🌙</div><div class="tool-card-body"><div class="tool-card-name">Wind-Down</div><div class="tool-card-desc">Build a calming bedtime routine</div></div><div class="tool-card-arrow">→</div></div>
+    <div class="tool-card tool-card--red" onclick="goToPage('spark')"><div class="tool-card-icon">✨</div><div class="tool-card-body"><div class="tool-card-name">Spark</div><div class="tool-card-desc">Unstick yourself from paralysis</div></div><div class="tool-card-arrow">→</div></div>
+    <div class="tool-card tool-card--slate" onclick="goToPage('scripts')"><div class="tool-card-icon">💬</div><div class="tool-card-body"><div class="tool-card-name">Script Builder</div><div class="tool-card-desc">AI writes the message you can't start</div></div><div class="tool-card-arrow">→</div></div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     1. ENERGY-AWARE SCHEDULER
+═══════════════════════════════════ -->
+<div id="page-schedule" class="page">
+  <div class="tool-page-inner">
+    <div class="page-breadcrumb">
+      <span style="cursor:pointer;color:var(--accent)" onclick="goHome()">🧌 Goblin Mode</span>
+      <span class="sep">/</span>
+      <span>📅 Energy-Aware Scheduler</span>
+    </div>
+
+    <!-- Scheduler card uses Tailwind via CDN injected below, scoped inside this section -->
+    <div id="scheduler-root" style="font-family:inherit">
+      <div class="card" style="padding:0;overflow:hidden">
+
+        <div style="padding:1.5rem 1.5rem 1rem;border-bottom:1px solid var(--border)">
+          <h2 style="font-family:'Fraunces',serif;font-size:1.4rem;font-weight:400;margin-bottom:.25rem">Energy-Aware Scheduler</h2>
+          <p style="color:var(--text-muted);font-size:.82rem">Stop fighting your battery. Plan with it.</p>
+        </div>
+
+        <div style="padding:1.5rem;display:flex;flex-direction:column;gap:1.5rem">
+
+          <!-- Energy selector -->
+          <div>
+            <label>How's your energy today?</label>
+            <div class="energy-selector" id="energySelector">
+              <button class="energy-btn" data-level="1" onclick="selectEnergy(1)"><span class="emoji">😴</span>Depleted</button>
+              <button class="energy-btn" data-level="2" onclick="selectEnergy(2)"><span class="emoji">🌧️</span>Low</button>
+              <button class="energy-btn active" data-level="3" onclick="selectEnergy(3)"><span class="emoji">⚡</span>Medium</button>
+              <button class="energy-btn" data-level="4" onclick="selectEnergy(4)"><span class="emoji">🔥</span>Good</button>
+              <button class="energy-btn" data-level="5" onclick="selectEnergy(5)"><span class="emoji">✨</span>Unstoppable</button>
+            </div>
+          </div>
+
+          <!-- Task history chips -->
+          <div id="librarySection" style="display:none">
+            <label style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted)">Add from your history</label>
+            <div id="taskLibrary" style="display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.5rem"></div>
+          </div>
+
+          <!-- Times -->
+          <div class="row">
+            <div><label>Wake up at</label><input type="time" id="wakeTime" value="08:00"></div>
+            <div><label>Wind down at</label><input type="time" id="endTime" value="18:00"></div>
+          </div>
+
+          <!-- Tasks -->
+          <div>
+            <label>Tasks <span style="color:var(--text-muted);font-size:.7rem;text-transform:none;letter-spacing:0">— one per line</span></label>
+            <textarea id="taskInput" style="min-height:130px" placeholder="Drive to Coles (10) and grab groceries [45]&#10;Go to gym [60]&#10;Work on project [120]&#10;&#10;(10) = travel time · [60] = task duration"></textarea>
+            <div style="font-size:.7rem;color:var(--text-muted);margin-top:.35rem">💡 <b>(mins)</b> = travel/buffer time &nbsp;·&nbsp; <b>[mins]</b> = task duration</div>
+          </div>
+
+          <!-- Buttons -->
+          <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+            <button id="buildBtn" class="btn btn-primary" onclick="buildSchedule()" style="flex:2;justify-content:center">✦ Build My Schedule</button>
+            <button class="btn btn-ghost" onclick="clearSchedule()" style="flex:1">Clear</button>
+          </div>
+
+          <!-- Output -->
+          <div id="outputContainer" style="display:none;border-top:1px solid var(--border);padding-top:1.5rem">
+            <div class="output-header" style="margin-bottom:1.2rem">
+              <span class="output-title"><span class="pulse"></span>Your Timeline</span>
+              <div style="display:flex;gap:1rem">
+                <button class="btn btn-ghost btn-sm" onclick="copyToClipboard()">Copy ↗</button>
+                <button class="btn btn-ghost btn-sm" onclick="exportToPDF()">Save PDF ↗</button>
+              </div>
+            </div>
+            <div id="scheduleBlocks"></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div id="page-goblin" class="page">
+  <div class="tool-page-inner">
+    <div class="page-breadcrumb">
+      <span style="cursor:pointer;color:var(--accent)" onclick="goHome()">🧌 Goblin Mode</span>
+      <span class="sep">/</span>
+      <span>🧌 Task Goblin</span>
+    </div>
+    <div class="section" id="goblin">
+  <div class="section-header">
+    <div class="section-icon icon-green">🧌</div>
+    <div class="section-header-text">
+      <h2>Task Goblin</h2>
+      <p>Big scary task? Goblin chews it into tiny, survivable pieces.</p>
+    </div>
+  </div>
+  <div class="card">
+    <label>What's the overwhelming task?</label>
+    <textarea id="goblinInput" placeholder="e.g. Clean the whole apartment&#10;Write my assignment&#10;Sort out my finances" style="min-height:65px"></textarea>
+    <div class="row" style="margin:.75rem 0">
+      <div><label>Break into how many steps?</label>
+        <select id="goblinSteps">
+          <option value="3">3 — very small</option>
+          <option value="5" selected>5 — just right</option>
+          <option value="7">7 — detailed</option>
+          <option value="10">10 — full breakdown</option>
+        </select>
+      </div>
+      <div><label>Energy right now?</label>
+        <select id="goblinEnergy">
+          <option value="low">😴 Low — tiny steps</option>
+          <option value="medium" selected>⚡ Medium — normal</option>
+          <option value="high">🔥 High — bring it</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="runGoblin()">🧌 Break it down</button>
+    <div class="task-progress" id="taskProgress"><div class="task-progress-fill" id="taskProgressFill" style="width:0%"></div></div>
+    <ul class="task-list" id="taskList"></ul>
+    <div id="goblinDone" style="display:none;text-align:center;padding:1rem;color:var(--green);font-family:'Fraunces',serif;font-style:italic;font-size:1rem">✓ All done! You did the thing. 🧌</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     3. FOCUS TIMER
+═══════════════════════════════════ -->
+    </div>
+  </div>
+</div>
+
+<div id="page-timer" class="page">
+  <div class="tool-page-inner">
+    <div class="page-breadcrumb">
+      <span style="cursor:pointer;color:var(--accent)" onclick="goHome()">🧌 Goblin Mode</span>
+      <span class="sep">/</span>
+      <span>⏱ Focus Timer</span>
+    </div>
+    <div class="section" id="timer">
+  <div class="section-header">
+    <div class="section-icon icon-blue">⏱</div>
+    <div class="section-header-text">
+      <h2>Focus Timer</h2>
+      <p>Pomodoro, custom focus, or a quick breathing reset.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="mode-tabs">
+      <button class="mode-tab active" onclick="switchMode('pomodoro',this)">🍅 Pomodoro</button>
+      <button class="mode-tab" onclick="switchMode('custom',this)">⚙ Custom</button>
+      <button class="mode-tab" onclick="switchMode('breathe',this)">🌬 Breathe</button>
+    </div>
+    <div id="timerMode">
+      <div class="timer-settings" id="timerSettings">
+        <div><label>Focus (mins)</label><input type="number" id="focusMins" value="25" min="1" max="120" onchange="resetTimer()"></div>
+        <div><label>Break (mins)</label><input type="number" id="breakMins" value="5" min="1" max="60" onchange="resetTimer()"></div>
+      </div>
+      <div class="timer-display">
+        <div class="timer-ring-wrap">
+          <svg class="timer-svg" viewBox="0 0 180 180">
+            <defs><linearGradient id="timerGrad" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#c084fc"/><stop offset="100%" stop-color="#818cf8"/></linearGradient></defs>
+            <circle class="timer-track" cx="90" cy="90" r="80"/>
+            <circle class="timer-fill" id="timerRing" cx="90" cy="90" r="80"/>
+          </svg>
+          <div class="timer-center">
+            <div class="timer-time" id="timerDisplay">25:00</div>
+            <div class="timer-phase" id="timerPhase">FOCUS</div>
+          </div>
+        </div>
+        <div class="timer-controls">
+          <button class="btn btn-primary" id="timerStartBtn" onclick="toggleTimer()">▶ Start</button>
+          <button class="btn btn-ghost" onclick="resetTimer()">↺ Reset</button>
+          <button class="btn btn-ghost" onclick="skipPhase()">⏭ Skip</button>
+        </div>
+        <div class="timer-stats">
+          <div><span class="timer-stat-val" id="pomodoroCount">0</span>sessions done</div>
+          <div><span class="timer-stat-val" id="totalFocusTime">0m</span>focused today</div>
+        </div>
+      </div>
+      <div class="notice" style="margin-top:1rem;margin-bottom:0">💜 If you need to stop early — that's okay. No guilt. You showed up.</div>
+    </div>
+    <div class="breathing-widget" id="breatheMode">
+      <div class="notice" style="width:100%;margin-bottom:1.5rem">A gentle 4-4-6 pattern. Use when overwhelmed, overstimulated, or between tasks.</div>
+      <div class="breath-circle" id="breathCircle">breathe</div>
+      <div class="breath-text" id="breathText">Press start when ready</div>
+      <div style="margin-top:1.5rem;display:flex;gap:.7rem">
+        <button class="btn btn-primary" id="breathStartBtn" onclick="startBreathing()">Start</button>
+        <button class="btn btn-ghost" onclick="stopBreathing()">Stop</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     4. BRAIN DUMP
+═══════════════════════════════════ -->
+    </div>
+  </div>
+</div>
+
+<div id="page-braindump" class="page">
+  <div class="tool-page-inner">
+    <div class="page-breadcrumb">
+      <span style="cursor:pointer;color:var(--accent)" onclick="goHome()">🧌 Goblin Mode</span>
+      <span class="sep">/</span>
+      <span>🧠 Brain Dump</span>
+    </div>
+    <div class="section" id="braindump">
+  <div class="section-header">
+    <div class="section-icon icon-purple">🧠</div>
+    <div class="section-header-text">
+      <h2>Brain Dump</h2>
+      <p>Get it all out. No filter, no structure. Then let Goblin sort it.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="notice">🫂 There's no wrong way to do this. Write every thought, worry, task, or random thing. The sorting comes after.</div>
+    <label>Everything in your head right now</label>
+    <textarea id="dumpInput" style="min-height:140px" placeholder="Just type. Stream of consciousness. Mess is fine.&#10;&#10;e.g. I need to call the dentist, I feel anxious about tomorrow, buy milk, I haven't replied to that email, I'm so tired, why did I say that thing last week..."></textarea>
+    <div class="divider"></div>
+    <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="runDump()">🧠 Sort my thoughts</button>
+      <button class="btn btn-ghost" onclick="clearDump()">Clear</button>
+    </div>
+    <div class="dump-categories" id="dumpCategories">
+      <div class="sensory-section" style="background:var(--bg3)">
+        <div class="dump-cat-title do">→ Things to do</div>
+        <ul class="dump-items do" id="dump-do"></ul>
+      </div>
+      <div class="sensory-section" style="background:var(--bg3)">
+        <div class="dump-cat-title feel">♡ Feelings to acknowledge</div>
+        <ul class="dump-items feel" id="dump-feel"></ul>
+      </div>
+      <div class="sensory-section" style="background:var(--bg3)">
+        <div class="dump-cat-title later">◷ Think about later</div>
+        <ul class="dump-items later" id="dump-later"></ul>
+      </div>
+      <div class="sensory-section" style="background:var(--bg3)">
+        <div class="dump-cat-title release">~ Let go of</div>
+        <ul class="dump-items release" id="dump-release"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     5. WHAT'S THE ONE THING
+═══════════════════════════════════ -->
+    </div>
+  </div>
+</div>
+
+<div id="page-onething" class="page">
+  <div class="tool-page-inner">
+    <div class="page-breadcrumb">
+      <span style="cursor:pointer;color:var(--accent)" onclick="goHome()">🧌 Goblin Mode</span>
+      <span class="sep">/</span>
+      <span>🎯 What's The One Thing?</span>
+    </div>
+    <div class="section" id="onething">
+  <div class="section-header">
+    <div class="section-icon icon-yellow">🎯</div>
+    <div class="section-header-text">
+      <h2>What's The One Thing?</h2>
+      <p>Too many tasks, can't choose. Let Goblin decide for you.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="notice">🧠 Decision paralysis is real. You don't have to pick — paste your list and it'll choose one for you, with a reason.</div>
+    <label>Your tasks (one per line)</label>
+    <textarea id="oneThingInput" style="min-height:100px" placeholder="Reply to emails&#10;Tidy desk&#10;Write intro paragraph&#10;Call the doctor&#10;Do laundry"></textarea>
+    <div class="row" style="margin:.75rem 0">
+      <div><label>Energy right now?</label>
+        <select id="oneThingEnergy">
+          <option value="low">😴 Low</option>
+          <option value="medium" selected>⚡ Medium</option>
+          <option value="high">🔥 High</option>
+        </select>
+      </div>
+      <div><label>Time available?</label>
+        <select id="oneThingTime">
+          <option value="tiny">⚡ 5–10 mins</option>
+          <option value="short" selected>🕐 15–30 mins</option>
+          <option value="long">🕑 1+ hour</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-primary" onclick="pickOneThing()">🎯 Pick the one thing</button>
+    <div class="one-thing-result" id="oneThingResult">
+      <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted);margin-bottom:.8rem">Your one thing right now:</div>
+      <div class="one-thing-task" id="oneThingTask"></div>
+      <div class="one-thing-why" id="oneThingWhy"></div>
+      <div class="one-thing-encourage" id="oneThingEncourage"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     6. TRANSITION TIMER
+═══════════════════════════════════ -->
+    </div>
+  </div>
+</div>
+
+<div id="page-transition" class="page">
+  <div class="tool-page-inner">
+    <div class="page-breadcrumb">
+      <span style="cursor:pointer;color:var(--accent)" onclick="goHome()">🧌 Goblin Mode</span>
+      <span class="sep">/</span>
+      <span>⏰ Transition Timer</span>
+    </div>
+    <div class="section" id="transition">
+  <div class="section-header">
+    <div class="section-icon icon-orange">⏰</div>
+    <div class="section-header-text">
+      <h2>Transition Timer</h2>
+      <p>A visual, gentle countdown. No time-blindness allowed.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="notice">👁 Time-blindness is an ADHD thing, not a character flaw. This makes time visible — with gentle nudges so you're never surprised.</div>
+    <label>Presets</label>
+    <div class="preset-btns">
+      <button class="preset-btn" onclick="setTransitionPreset(5,'Leaving in 5 minutes')">5 min</button>
+      <button class="preset-btn" onclick="setTransitionPreset(10,'Leaving in 10 minutes')">10 min</button>
+      <button class="preset-btn" onclick="setTransitionPreset(15,'Leaving in 15 minutes')">15 min</button>
+      <button class="preset-btn" onclick="setTransitionPreset(20,'Leaving in 20 minutes')">20 min</button>
+      <button class="preset-btn" onclick="setTransitionPreset(30,'Leaving in 30 minutes')">30 min</button>
+      <button class="preset-btn" onclick="setTransitionPreset(60,'1 hour until...')">60 min</button>
+    </div>
+    <div class="row" style="margin-bottom:.9rem">
+      <div><label>Custom minutes</label><input type="number" id="transitionMins" value="15" min="1" max="180"></div>
+      <div><label>What's happening?</label><input type="text" id="transitionLabel" value="Time to leave" placeholder="e.g. Leave the house"></div>
+    </div>
+    <div style="display:flex;gap:.7rem;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="startTransition()">▶ Start countdown</button>
+      <button class="btn btn-ghost" onclick="stopTransition()">Stop</button>
+    </div>
+    <div class="transition-display" id="transitionDisplay" style="display:none">
+      <div class="transition-big" id="transitionBig">15:00</div>
+      <div class="transition-label" id="transitionLabelDisplay">Time to leave</div>
+      <div class="transition-bar-wrap"><div class="transition-bar" id="transitionBar"></div></div>
+      <ul class="nudge-list" id="nudgeList"></ul>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     7. SENSORY TOOLKIT
+═══════════════════════════════════ -->
+    </div>
+  </div>
+</div>
+
+<div id="page-sensory" class="page">
+  <div class="tool-page-inner">
+    <div class="page-breadcrumb">
+      <span style="cursor:pointer;color:var(--accent)" onclick="goHome()">🧌 Goblin Mode</span>
+      <span class="sep">/</span>
+      <span>🧩 Sensory Toolkit</span>
+    </div>
+    <div class="section" id="sensory">
+  <div class="section-header">
+    <div class="section-icon icon-blue">🧩</div>
+    <div class="section-header-text">
+      <h2>Sensory Toolkit</h2>
+      <p>Your personal guide for when the world is too much.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="notice">🧩 Edit these to match what actually works for you. Tap a chip to mark it as a favourite — then your go-tos are always visible at the top.</div>
+    <div class="sensory-grid" id="sensoryGrid">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     8. WIND-DOWN ROUTINE BUILDER
+═══════════════════════════════════ -->
+    </div>
+  </div>
+</div>
+
+<div id="page-winddown" class="page">
+  <div class="tool-page-inner">
+    <div class="page-breadcrumb">
+      <span style="cursor:pointer;color:var(--accent)" onclick="goHome()">🧌 Goblin Mode</span>
+      <span class="sep">/</span>
+      <span>🌙 Wind-Down Routine</span>
+    </div>
+    <div class="section" id="winddown">
+  <div class="section-header">
+    <div class="section-icon icon-purple">🌙</div>
+    <div class="section-header-text">
+      <h2>Wind-Down Routine Builder</h2>
+      <p>Build an evening routine that tells your brain it's safe to rest.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="notice">🌙 Consistency signals safety. A saved routine means less thinking, fewer decisions, more rest.</div>
+    <div id="winddownBuilder">
+      <label>Build your routine (add steps below)</label>
+      <div id="builderRows">
+        <div class="builder-step-row">
+          <div><label>Step</label><input type="text" placeholder="e.g. Make herbal tea" class="wd-step-name"></div>
+          <div><label>Duration</label>
+            <select class="wd-step-dur">
+              <option value="5">5 mins</option>
+              <option value="10" selected>10 mins</option>
+              <option value="15">15 mins</option>
+              <option value="20">20 mins</option>
+              <option value="30">30 mins</option>
+            </select>
+          </div>
+          <div style="display:flex;align-items:flex-end"><button class="btn btn-ghost btn-sm" onclick="removeBuilderRow(this)" style="margin-bottom:0">✕</button></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:.6rem;margin-top:.7rem;flex-wrap:wrap">
+        <button class="btn btn-ghost btn-sm" onclick="addBuilderRow()">+ Add step</button>
+        <button class="btn btn-primary" onclick="saveWindDown()">🌙 Save routine</button>
+        <button class="btn btn-ghost btn-sm" onclick="loadDefaults()">Use suggested steps</button>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <div id="winddownRoutine" style="display:none">
+      <div class="output-header">
+        <span class="output-title"><span class="pulse"></span>Tonight's Wind-Down <span id="savedBadge" style="display:none" class="saved-badge">✓ Saved</span></span>
+        <button class="btn btn-ghost btn-sm" onclick="resetWindDown()">Edit</button>
+      </div>
+      <ul class="winddown-steps" id="winddownSteps"></ul>
+      <div id="winddownComplete" style="display:none;text-align:center;padding:1rem;color:var(--accent);font-family:'Fraunces',serif;font-style:italic">✦ Routine complete. Rest now. You've earned it. 🌙</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     9. SPARK — PARALYSIS BUSTER
+═══════════════════════════════════ -->
+    </div>
+  </div>
+</div>
+
+<div id="page-spark" class="page">
+  <div class="tool-page-inner">
+    <div class="page-breadcrumb">
+      <span style="cursor:pointer;color:var(--accent)" onclick="goHome()">🧌 Goblin Mode</span>
+      <span class="sep">/</span>
+      <span>✨ Spark</span>
+    </div>
+    <div class="section" id="spark">
+  <div class="section-header">
+    <div class="section-icon icon-yellow">✨</div>
+    <div class="section-header-text">
+      <h2>Spark</h2>
+      <p>Stuck, paralysed, or just empty? Get a random gentle nudge.</p>
+    </div>
+  </div>
+  <div class="card">
+    <div class="notice">💛 You don't have to be productive right now. Sometimes you just need somewhere to start — even if it's tiny. No pressure.</div>
+    <div class="filter-row" id="sparkFilters">
+      <button class="filter-btn active" data-cat="all" onclick="toggleFilter(this)">✦ All</button>
+      <button class="filter-btn" data-cat="physical" onclick="toggleFilter(this)">🏃 Movement</button>
+      <button class="filter-btn" data-cat="creative" onclick="toggleFilter(this)">🎨 Creative</button>
+      <button class="filter-btn" data-cat="comfort" onclick="toggleFilter(this)">🫂 Comfort</button>
+      <button class="filter-btn" data-cat="distract" onclick="toggleFilter(this)">🎮 Distraction</button>
+    </div>
+    <div class="spark-card" id="sparkCard">
+      <span class="spark-emoji" id="sparkEmoji">✨</span>
+      <div class="spark-activity" id="sparkActivity">Press the button to get a spark</div>
+      <div class="spark-note" id="sparkNote">Something small to help you begin — or just be.</div>
+    </div>
+    <div style="display:flex;gap:.7rem;justify-content:center;flex-wrap:wrap">
+      <button class="btn btn-primary" onclick="getSpark()">✨ Give me a spark</button>
+      <button class="btn btn-ghost" onclick="getSpark()">↺ Different one</button>
+    </div>
+  </div>
+</div>
+
+    </div>
+  </div>
+</div>
+
+
+<div id="page-scripts" class="page">
+  <div class="tool-page-inner">
+    <div class="page-breadcrumb">
+      <span style="cursor:pointer;color:var(--accent)" onclick="goHome()">🧌 Goblin Mode</span>
+      <span class="sep">/</span>
+      <span>💬 Script Builder</span>
+    </div>
+
+    <div class="section-header">
+      <div class="section-icon icon-pink">💬</div>
+      <div class="section-header-text">
+        <h2>Script Builder</h2>
+        <p>Hard conversation coming up? Get an AI-written script so you don't have to find the words yourself.</p>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="notice">💜 Masking is exhausting. Having the right words ready in advance means one less thing your brain has to hold. Describe the situation and let AI write it for you.</div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem">
+        <div>
+          <label>Situation</label>
+          <select id="sb-situation">
+            <option>Cancelling Plans</option>
+            <option>Setting a Boundary</option>
+            <option>Asking for Help</option>
+            <option>Being Late</option>
+            <option>Phone Call Script</option>
+            <option>Asking for an Extension</option>
+            <option>Saying No</option>
+            <option>Checking In</option>
+            <option>Other / Custom</option>
+          </select>
+        </div>
+        <div>
+          <label>Recipient</label>
+          <input type="text" id="sb-recipient" placeholder="e.g. My manager, Sarah, the bank…">
+        </div>
+      </div>
+
+      <div style="margin-bottom:1rem">
+        <label>Tone</label>
+        <div style="display:flex;gap:.5rem;margin-top:.4rem">
+          <button class="sb-tone-btn active" data-tone="Gentle" onclick="sbSetTone(this)">🌸 Gentle</button>
+          <button class="sb-tone-btn" data-tone="Direct" onclick="sbSetTone(this)">⚡ Direct</button>
+          <button class="sb-tone-btn" data-tone="Witty" onclick="sbSetTone(this)">😄 Witty</button>
+          <button class="sb-tone-btn" data-tone="Formal" onclick="sbSetTone(this)">🏢 Formal</button>
+        </div>
+      </div>
+
+      <div style="margin-bottom:1.2rem">
+        <label>What's the situation? <span style="color:var(--text-muted);font-size:.7rem;text-transform:none;letter-spacing:0">(the more detail, the better the script)</span></label>
+        <textarea id="sb-context" style="min-height:90px" placeholder="e.g. I have a migraine and can't make it to dinner tonight. I really didn't want to cancel and I'm feeling guilty.&#10;&#10;Or: My project is stuck because I'm waiting on someone else and I need more time before the Friday deadline."></textarea>
+      </div>
+
+      <div class="divider"></div>
+
+      <button class="btn btn-primary" id="sb-generate-btn" onclick="sbGenerate()" style="width:100%;justify-content:center;padding:.8rem">
+        ✦ Generate Script
+      </button>
+
+      <div id="sb-error" style="display:none;margin-top:.8rem;background:rgba(248,113,113,.1);border:1px solid rgba(248,113,113,.3);border-radius:10px;padding:.65rem .9rem;font-size:.78rem;color:var(--red)"></div>
+
+      <div id="sb-result" style="display:none;margin-top:1.2rem">
+        <div class="output-header">
+          <span class="output-title"><span class="pulse"></span>Your script</span>
+          <button class="btn btn-ghost btn-sm" onclick="sbCopy()">Copy ↗</button>
+        </div>
+        <div id="sb-output" style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:1.1rem;font-size:.85rem;color:var(--text-soft);line-height:1.85;white-space:pre-wrap;margin-top:.5rem"></div>
+        <div style="margin-top:.7rem;font-size:.72rem;color:var(--text-muted);font-style:italic" id="sb-note"></div>
+        <button class="btn btn-ghost btn-sm" onclick="sbGenerate()" style="margin-top:.8rem">↺ Regenerate</button>
+      </div>
+
+      <div id="sb-history-section" style="display:none;margin-top:1.5rem;padding-top:1.2rem;border-top:1px solid var(--border)">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.9rem">
+          <div style="font-size:.68rem;text-transform:uppercase;letter-spacing:.1em;color:var(--text-muted)">📋 Recent Scripts</div>
+          <button class="script-history-btn danger" onclick="sbClearHistory()">Clear history</button>
+        </div>
+        <div id="sb-history-list" style="display:flex;flex-direction:column;gap:.6rem"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  Made with <span>♥</span> for neurodivergent brains everywhere &nbsp;·&nbsp; 🧌 Goblin Mode
+</footer>
+
+<!-- ═══════════════ AUTH OVERLAY ═══════════════ -->
+<div class="auth-overlay" id="authOverlay">
+  <div class="auth-box">
+    <div class="auth-logo">🧌</div>
+    <div class="auth-sub">Your personal ADHD & Autism toolkit.<br>Sign in to save your preferences across sessions.</div>
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="loginTab" onclick="switchAuthTab('login')">Sign In</button>
+      <button class="auth-tab" id="signupTab" onclick="switchAuthTab('signup')">Create Account</button>
+    </div>
+    <div id="authError" class="auth-error"></div>
+    <div id="authSuccess" class="auth-success"></div>
+    <div id="loginForm">
+      <div class="auth-field"><label>Username</label><input type="text" id="loginUsername" placeholder="your username" autocomplete="username"></div>
+      <div class="auth-field"><label>Password</label><input type="password" id="loginPassword" placeholder="••••••••" autocomplete="current-password" onkeydown="if(event.key==='Enter')doLogin()"></div>
+      <button class="btn-auth" onclick="doLogin()">Sign In →</button>
+      <div style="text-align:center;margin-top:1rem;font-size:.72rem;color:var(--text-muted)">Don't have an account? <span style="color:var(--accent);cursor:pointer" onclick="switchAuthTab('signup')">Create one</span></div>
+    </div>
+    <div id="signupForm" style="display:none">
+      <div class="auth-field"><label>Display Name</label><input type="text" id="signupName" placeholder="What should we call you?"></div>
+      <div class="auth-field"><label>Username</label><input type="text" id="signupUsername" placeholder="choose a username (no spaces)"></div>
+      <div class="auth-field"><label>Password</label><input type="password" id="signupPassword" placeholder="create a password" autocomplete="new-password" onkeydown="if(event.key==='Enter')doSignup()"></div>
+      <button class="btn-auth" onclick="doSignup()">Create Account →</button>
+      <div style="text-align:center;margin-top:1rem;font-size:.72rem;color:var(--text-muted)">Already have an account? <span style="color:var(--accent);cursor:pointer" onclick="switchAuthTab('login')">Sign in</span></div>
+    </div>
+    <div style="margin-top:1.4rem;padding-top:1rem;border-top:1px solid var(--border);text-align:center">
+      <span style="font-size:.68rem;color:var(--text-muted)">🔒 Everything is stored locally on your device only. No data is ever sent anywhere.</span>
+      <div style="margin-top:.9rem">
+        <span onclick="continueAsGuest()" style="font-size:.75rem;color:var(--text-muted);cursor:pointer;text-decoration:underline;text-underline-offset:3px">Continue without an account →</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════ PROFILE DROPDOWN ═══════════════ -->
+<div class="profile-dropdown" id="profileDropdown">
+  <div class="profile-header">
+    <div class="profile-name" id="dropdownName"></div>
+    <div class="profile-handle" id="dropdownHandle"></div>
+  </div>
+  <button class="profile-menu-item" onclick="openProfilePage()">⚙ Preferences & Profile</button>
+  <button class="profile-menu-item" onclick="openProfilePage('sensory')">🧩 Sensory Toolkit Settings</button>
+  <button class="profile-menu-item" onclick="openProfilePage('winddown')">🌙 Wind-Down Routine</button>
+  <button class="profile-menu-item danger" onclick="doLogout()">↩ Sign Out</button>
+</div>
+
+<!-- ═══════════════ PROFILE PAGE ═══════════════ -->
+<div class="profile-page" id="profilePage">
+  <div class="profile-page-inner">
+    <button class="profile-back" onclick="closeProfilePage()">← Back to toolkit</button>
+    <div style="display:flex;align-items:center;gap:1rem;margin-bottom:2rem">
+      <div class="profile-avatar-big" id="profileAvatarBig"></div>
+      <div>
+        <div style="font-family:'Fraunces',serif;font-size:1.6rem;color:var(--text)" id="profilePageName"></div>
+        <div style="font-size:.75rem;color:var(--text-muted)" id="profilePageHandle"></div>
+      </div>
+    </div>
+
+    <!-- Display preferences -->
+    <div class="pref-section" id="prefDisplay">
+      <div class="pref-title">Display</div>
+      <div class="pref-desc">Adjust how the toolkit looks and feels.</div>
+      <div class="pref-row">
+        <div><div class="pref-row-label">Bionic Reading</div><div class="pref-row-sub">Bold the first half of each word to aid reading</div></div>
+        <label class="toggle-switch"><input type="checkbox" id="prefBionic" onchange="savePrefInstant()"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="pref-row">
+        <div><div class="pref-row-label">Larger Text</div><div class="pref-row-sub">Increase font size across the toolkit</div></div>
+        <label class="toggle-switch"><input type="checkbox" id="prefLargeText" onchange="savePrefInstant()"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="pref-row">
+        <div><div class="pref-row-label">Reduce Motion</div><div class="pref-row-sub">Turn off animations and transitions</div></div>
+        <label class="toggle-switch"><input type="checkbox" id="prefReduceMotion" onchange="savePrefInstant()"><span class="toggle-slider"></span></label>
+      </div>
+      <div class="pref-row" style="border-bottom:none;flex-direction:column;align-items:flex-start;gap:.6rem">
+        <div><div class="pref-row-label">Accent Colour</div><div class="pref-row-sub">Personalise your toolkit colour</div></div>
+        <div class="color-picker-row" id="colorPicker">
+          <div class="color-swatch selected" data-color="#c084fc" style="background:#c084fc" onclick="pickColor(this)" title="Purple"></div>
+          <div class="color-swatch" data-color="#60a5fa" style="background:#60a5fa" onclick="pickColor(this)" title="Blue"></div>
+          <div class="color-swatch" data-color="#34d399" style="background:#34d399" onclick="pickColor(this)" title="Green"></div>
+          <div class="color-swatch" data-color="#f472b6" style="background:#f472b6" onclick="pickColor(this)" title="Pink"></div>
+          <div class="color-swatch" data-color="#fb923c" style="background:#fb923c" onclick="pickColor(this)" title="Orange"></div>
+          <div class="color-swatch" data-color="#facc15" style="background:#facc15" onclick="pickColor(this)" title="Yellow"></div>
+          <div class="color-swatch" data-color="#e2e8f0" style="background:#e2e8f0" onclick="pickColor(this)" title="White"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Energy defaults -->
+    <div class="pref-section">
+      <div class="pref-title">Daily Defaults</div>
+      <div class="pref-desc">These are used as starting points when you open the toolkit each day.</div>
+      <div class="pref-row">
+        <div><div class="pref-row-label">Default wake time</div></div>
+        <input type="text" id="prefWakeTime" placeholder="e.g. 8:00 AM" style="width:110px;padding:.4rem .6rem;font-size:.8rem;text-align:right">
+      </div>
+      <div class="pref-row">
+        <div><div class="pref-row-label">Default focus session length</div><div class="pref-row-sub">Used in the Focus Timer</div></div>
+        <input type="number" id="prefFocusMins" min="5" max="90" placeholder="25" style="width:70px;padding:.4rem .6rem;font-size:.8rem;text-align:right">
+      </div>
+      <div class="pref-row">
+        <div><div class="pref-row-label">Default break length</div><div class="pref-row-sub">Used in the Focus Timer</div></div>
+        <input type="number" id="prefBreakMins" min="1" max="30" placeholder="5" style="width:70px;padding:.4rem .6rem;font-size:.8rem;text-align:right">
+      </div>
+    </div>
+
+    <!-- Sensory toolkit settings -->
+    <div class="pref-section" id="prefSensory">
+      <div class="pref-title">🧩 Sensory Toolkit</div>
+      <div class="pref-desc">Your sensory toolkit preferences are automatically saved to your profile. Any changes you make in the toolkit are stored here.</div>
+      <div id="sensoryPrefPreview" style="font-size:.78rem;color:var(--text-muted);font-style:italic">Loading your saved items...</div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:.8rem" onclick="closeProfilePage();setTimeout(()=>document.getElementById('sensory').scrollIntoView({behavior:'smooth'}),100)">Edit Sensory Toolkit →</button>
+    </div>
+
+    <!-- Wind down settings -->
+    <div class="pref-section" id="prefWindDown">
+      <div class="pref-title">🌙 Wind-Down Routine</div>
+      <div class="pref-desc">Your saved wind-down routine is stored in your profile and will be here every evening.</div>
+      <div id="winddownPrefPreview" style="font-size:.78rem;color:var(--text-muted);font-style:italic">Loading your routine...</div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:.8rem" onclick="closeProfilePage();setTimeout(()=>document.getElementById('winddown').scrollIntoView({behavior:'smooth'}),100)">Edit Routine →</button>
+    </div>
+
+    <!-- Account -->
+    <div class="pref-section">
+      <div class="pref-title">Account</div>
+      <div class="pref-desc">Manage your Goblin Mode account.</div>
+      <div class="pref-row">
+        <div><div class="pref-row-label">Change display name</div></div>
+        <input type="text" id="prefNewName" placeholder="new name" style="width:160px;padding:.4rem .6rem;font-size:.8rem">
+      </div>
+      <div style="display:flex;gap:.7rem;flex-wrap:wrap;margin-top:1rem">
+        <button class="btn btn-primary btn-sm save-prefs-btn" onclick="saveAllPrefs()">✓ Save Changes</button>
+        <button class="btn btn-ghost btn-sm" onclick="doLogout()">Sign Out</button>
+      </div>
+      <div id="prefSaveMsg" style="display:none;margin-top:.7rem;font-size:.75rem;color:var(--green)">✓ Preferences saved!</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+// ═══════════════════════
+// SCHEDULE BUILDER
+// ═══════════════════════
+let selectedEnergy = 3;
+function selectEnergy(level) {
+  selectedEnergy = level;
+  document.querySelectorAll('.energy-btn').forEach(btn => {
+    btn.className = 'energy-btn';
+    if (parseInt(btn.dataset.level) === level) btn.classList.add(`sel-${level}`);
+  });
+}
+// Energy managed by selectEnergy() in toolkit
+        
+        // Smart Context Logic
+        // Each entry can have before/after/both buffer blocks
+        // 'both' means the same travel time applies going and coming back
+        const contextRules = [
+            { match: 'gym',      before: { name: 'Commute to gym',       mins: 30 }, after: { name: 'Commute home + shower', mins: 40 } },
+            { match: 'workout',  before: null,                                        after: { name: 'Shower & change',        mins: 20 } },
+            { match: 'office',   before: { name: 'Commute to office',    mins: 45 }, after: { name: 'Commute home',           mins: 45 } },
+            { match: 'work',     before: { name: 'Commute to work',      mins: 45 }, after: { name: 'Commute home',           mins: 45 } },
+            { match: 'grocery',  before: { name: 'Drive to shops',       mins: 15 }, after: { name: 'Drive home & unload',    mins: 25 } },
+            { match: 'supermarket', before: { name: 'Drive to shops',    mins: 15 }, after: { name: 'Drive home & unload',    mins: 25 } },
+            { match: 'meeting',  before: { name: 'Prep & travel',        mins: 15 }, after: { name: 'Travel back',            mins: 15 } },
+            { match: 'doctor',   before: { name: 'Travel to appointment',mins: 20 }, after: { name: 'Travel home',            mins: 20 } },
+            { match: 'dentist',  before: { name: 'Travel to dentist',    mins: 20 }, after: { name: 'Travel home',            mins: 20 } },
+            { match: 'therapy',  before: { name: 'Travel to appointment',mins: 20 }, after: { name: 'Travel home',            mins: 20 } },
+            { match: 'school',   before: { name: 'School run (drop off)',  mins: 20 }, after: { name: 'School run (pick up)', mins: 20 } },
+            { match: 'swim',     before: { name: 'Commute to pool',      mins: 20 }, after: { name: 'Commute home + dry off',mins: 30 } },
+            { match: 'pool',     before: { name: 'Commute to pool',      mins: 20 }, after: { name: 'Commute home + dry off',mins: 30 } },
+            { match: 'class',    before: { name: 'Travel to class',      mins: 20 }, after: { name: 'Travel home',           mins: 20 } },
+            { match: 'cafe',     before: { name: 'Travel to café',       mins: 15 }, after: { name: 'Travel back',           mins: 15 } },
+            { match: 'coffee',   before: { name: 'Travel to café',       mins: 15 }, after: { name: 'Travel back',           mins: 15 } },
+            { match: 'lunch',    before: { name: 'Travel to lunch',      mins: 15 }, after: { name: 'Travel back',           mins: 15 } },
+            { match: 'dinner',   before: { name: 'Travel to dinner',     mins: 20 }, after: { name: 'Travel back + wind down', mins: 25 } },
+            { match: 'pharmacy', before: { name: 'Drive to pharmacy',    mins: 10 }, after: { name: 'Drive back',            mins: 10 } },
+            { match: 'bank',     before: { name: 'Travel to bank',       mins: 15 }, after: { name: 'Travel back',           mins: 15 } },
+        ];
+
+        function setEnergy(level) {
+            selectedEnergy = level;
+            document.querySelectorAll('.energy-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.dataset.level == level) btn.classList.add('active');
+            });
+        }
+
+        function cleanTaskLabel(raw) {
+            // Strip duration [N] and travel (N) tokens, collapse whitespace
+            return raw.replace(/\[\d+\]/g, '').replace(/\(\d+\)/g, '').replace(/\s+/g, ' ').trim();
+        }
+
+        function saveToLibrary(tasks) {
+            let library = JSON.parse(localStorage.getItem('taskLibrary')) || [];
+            // Normalise existing library entries for comparison
+            const normalised = library.map(e => cleanTaskLabel(e).toLowerCase());
+            tasks.forEach(t => {
+                const cleanTask = cleanTaskLabel(t);
+                // Skip blanks and duplicates (case-insensitive, ignoring tokens)
+                if (!cleanTask) return;
+                if (normalised.includes(cleanTask.toLowerCase())) return;
+                library.push(cleanTask);
+                normalised.push(cleanTask.toLowerCase());
+            });
+            const trimmed = library.slice(-20);
+            localStorage.setItem('taskLibrary', JSON.stringify(trimmed));
+            if(currentUser) { currentUser.taskLibrary = trimmed; persistUser(); }
+            renderLibrary();
+        }
+
+        function renderLibrary() {
+            const library = JSON.parse(localStorage.getItem('taskLibrary')) || [];
+            const container = document.getElementById('taskLibrary');
+            const section = document.getElementById('librarySection');
+            if (!container || !section) return;
+            if (library.length === 0) { section.style.display = 'none'; return; }
+            section.style.display = 'block';
+            container.innerHTML = library.map(t => {
+                const safe = t.replace(/'/g, "\'");
+                return `<span class="library-tag">
+                    <button onclick="addFromLibrary('${safe}')" class="library-tag-label">+ ${t}</button>
+                    <button onclick="deleteFromLibrary('${safe}')" class="library-tag-del" title="Remove">✕</button>
+                </span>`;
+            }).join('');
+        }
+
+        function deleteFromLibrary(task) {
+            let library = JSON.parse(localStorage.getItem('taskLibrary')) || [];
+            library = library.filter(t => t !== task);
+            localStorage.setItem('taskLibrary', JSON.stringify(library));
+            renderLibrary();
+        }
+
+        function addFromLibrary(task) {
+            const input = document.getElementById('taskInput');
+            input.value += (input.value ? '\n' : '') + task;
+        }
+
+        function parseTime(timeStr) {
+            const [hrs, mins] = timeStr.split(':').map(Number);
+            return hrs * 60 + mins;
+        }
+
+        function formatTime(totalMins) {
+            let hours = Math.floor(totalMins / 60);
+            let mins = Math.floor(totalMins % 60);
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+            return `${hours}:${mins.toString().padStart(2, '0')} ${ampm}`;
+        }
+
+        function parseLine(line) {
+            // Parses a task line into an array of sequential segments.
+            // Supports:
+            //   [45]        — main task duration (square brackets)
+            //   (10)        — a travel/buffer segment inline (round brackets)
+            //   "Drive to coles (10) and grab groceries [45]"
+            //   → segment 1: "Drive to coles" buffer 10m
+            //   → segment 2: "and grab groceries" task 45m
+            //   Also supports plain "(10) return drive" style anywhere in the line.
+
+            const segments = [];
+            // Split on either [N] or (N) tokens, keeping the delimiter
+            // We'll walk through the string accumulating text and emitting blocks
+            let remaining = line.trim();
+            let pendingLabel = '';
+
+            // Tokenise: split into alternating text and number-in-brackets tokens
+            const tokenRe = /(\(\d+\)|\[\d+\])/g;
+            let lastIndex = 0;
+            let match;
+
+            while ((match = tokenRe.exec(remaining)) !== null) {
+                const textBefore = remaining.slice(lastIndex, match.index).trim();
+                const token = match[0];
+                const mins = parseInt(token.replace(/[\[\]()]/g, ''));
+                const isTravel = token.startsWith('(');
+                const label = (pendingLabel + ' ' + textBefore).trim() || (isTravel ? 'Travel' : 'Task');
+
+                if (label) {
+                    segments.push({
+                        name: label,
+                        dur: mins,
+                        type: isTravel ? 'buffer' : 'task'
+                    });
+                    pendingLabel = '';
+                }
+
+                lastIndex = tokenRe.lastIndex;
+            }
+
+            // Remaining text after last token = task with no explicit duration
+            const tail = remaining.slice(lastIndex).trim();
+            if (tail) {
+                // No duration specified for tail — use energy-based default
+                pendingLabel = (pendingLabel + ' ' + tail).trim();
+            }
+            if (pendingLabel) {
+                // Tail text with no duration — default 30 mins task
+                segments.push({ name: pendingLabel, dur: 30, type: 'task' });
+            }
+
+            // If nothing was parsed (e.g. plain "Go for a walk"), treat whole line as task
+            if (segments.length === 0) {
+                segments.push({ name: remaining, dur: 30, type: 'task' });
+            }
+
+            return segments;
+        }
+
+        async function buildSchedule() {
+            const input = document.getElementById('taskInput').value.trim();
+            if (!input) return;
+
+            const taskLines = input.split('\n').filter(l => l.trim());
+            saveToLibrary(taskLines);
+
+            const btn = document.getElementById('buildBtn');
+            btn.textContent = '✦ Planning your day…';
+            btn.disabled = true;
+
+            const energyLabels = { 1: 'Depleted', 2: 'Low', 3: 'Medium', 4: 'Good', 5: 'Unstoppable' };
+            const wakeTime = document.getElementById('wakeTime').value;
+            const endTime = document.getElementById('endTime').value;
+
+            const systemPrompt = `You are an expert daily planner for people with ADHD and executive function challenges. Your job is to take a list of tasks and produce an optimised, realistic schedule as a JSON array.
+
+RULES:
+- Group errands and out-of-home activities together intelligently to minimise separate trips (e.g. grocery + pharmacy on the same outing)
+- Add realistic travel/commute buffers before AND after any out-of-home task
+- Add post-activity buffers where needed (shower after gym, unload after grocery etc)
+- Add energy recharge breaks scaled to the energy level — more breaks for lower energy
+- Schedule cognitively demanding tasks earlier when energy is higher, lighter tasks later
+- Never schedule past the wind-down time unless unavoidable
+- Respect any explicit durations given in [square brackets] exactly
+- Respect any explicit travel times given in (round brackets) exactly — but still add the return trip if not specified
+- Output ONLY a valid JSON array, no explanation, no markdown, no backticks
+
+CRITICAL TRAVEL RULES — read carefully:
+- A "Drive to X (10)" line means the person is already travelling TO that place. The very next task block should be the activity AT that location — do NOT add another "Drive to X" before it.
+- If multiple tasks are at the same location or on the same outing (e.g. "Drive to Coles (10)" then "get groceries [30]"), treat them as one continuous outing. Only add ONE outbound travel block and ONE return travel block for the whole outing — not one per task.
+- Never duplicate a travel action that the user has already written. If they wrote "Drive to Coles (10)", do not also add "Drive to Coles" as a separate buffer block.
+- When you see "Drive to X" or "Travel to X" as a task line, that IS the travel buffer — output it as type "buffer", not "task".
+- The return trip home should only appear ONCE at the end of all tasks that share the same outing.
+
+Each item in the array must be exactly:
+{ "name": "string", "dur": number_in_minutes, "type": "task" | "buffer" | "break" }
+
+type meanings:
+- "task" = the main activity at a location
+- "buffer" = travel, commute, prep, shower, unload — shown in orange
+- "break" = rest, recharge — shown in green`;
+
+            // Pre-annotate lines so Claude understands which are already travel blocks
+            const annotatedLines = taskLines.map(line => {
+                const lc = line.toLowerCase();
+                const isDriveOrTravel = /^(drive|travel|commute|walk|cycle|bus|train|uber|lyft)\b/i.test(line.trim());
+                const hasManualTravel = line.includes('(') && line.match(/\(\d+\)/);
+                if (isDriveOrTravel) return `[TRAVEL BLOCK] ${line}`;
+                if (hasManualTravel) return `[CONTAINS INLINE TRAVEL] ${line}`;
+                return line;
+            });
+
+            const userPrompt = `Energy level: ${selectedEnergy}/5 (${energyLabels[selectedEnergy]})
+Wake time: ${wakeTime}
+Wind-down time: ${endTime}
+
+Tasks (lines marked [TRAVEL BLOCK] are already the travel themselves — do NOT add another travel buffer before the next task):
+${annotatedLines.join('\n')}
+
+Plan the optimal schedule for today as a JSON array. Remember: if a line is marked [TRAVEL BLOCK], the very next task block is already AT the destination — no extra drive needed.`;
+
+            try {
+                const response = await fetch('https://api.anthropic.com/v1/messages', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'anthropic-version': '2023-06-01',
+                        'anthropic-dangerous-direct-browser-access': 'true'
+                    },
+                    body: JSON.stringify({
+                        model: 'claude-sonnet-4-20250514',
+                        max_tokens: 2000,
+                        system: systemPrompt,
+                        messages: [{ role: 'user', content: userPrompt }]
+                    })
+                });
+
+                if (!response.ok) throw new Error('API error ' + response.status);
+
+                const data = await response.json();
+                let raw = data.content?.find(b => b.type === 'text')?.text || '[]';
+
+                // Strip any accidental markdown fences
+                raw = raw.replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```\s*$/i, '').trim();
+
+                const blocks = JSON.parse(raw);
+                renderSchedule(blocks);
+
+            } catch (err) {
+                console.error('AI scheduling error:', err);
+                // Fallback to original rule-based scheduler
+                alert('AI scheduling unavailable — falling back to automatic scheduling.');
+                _fallbackBuildSchedule(taskLines);
+            } finally {
+                btn.textContent = '✦ Build My Schedule';
+                btn.disabled = false;
+            }
+        }
+
+        function _fallbackBuildSchedule(taskLines) {
+            let currentTime = parseTime(document.getElementById('wakeTime').value);
+            const blocks = [];
+            const breakBuffer = (6 - selectedEnergy) * 12;
+
+            taskLines.forEach(line => {
+                const segments = parseLine(line);
+                const hasManualTravel = line.includes('(');
+                const fullTaskName = line.replace(/\[.*?\]/g, '').replace(/\(.*?\)/g, '').trim();
+                const matchedRule = contextRules.find(r => fullTaskName.toLowerCase().includes(r.match));
+
+                if (!hasManualTravel) {
+                    if (matchedRule?.before) { blocks.push({ name: matchedRule.before.name, dur: matchedRule.before.mins, type: 'buffer' }); }
+                    segments.forEach(seg => blocks.push({ name: seg.name, dur: seg.dur, type: seg.type }));
+                    if (matchedRule?.after) { blocks.push({ name: matchedRule.after.name, dur: matchedRule.after.mins, type: 'buffer' }); }
+                } else {
+                    segments.forEach(seg => blocks.push({ name: seg.name, dur: seg.dur, type: seg.type }));
+                    const lastSeg = segments[segments.length - 1];
+                    const firstTravelSeg = segments.find(s => s.type === 'buffer');
+                    if (lastSeg?.type === 'task' && firstTravelSeg) {
+                        blocks.push({ name: matchedRule?.after?.name || 'Drive home', dur: firstTravelSeg.dur, type: 'buffer' });
+                    }
+                }
+                if (breakBuffer > 0) blocks.push({ name: 'Energy Recharge', dur: breakBuffer, type: 'break' });
+            });
+
+            renderSchedule(blocks);
+        }
+
+        // ── Live schedule state (scheduleBlocks & dragSrc shared with wind-down drag) ──
+
+        function recalcTimes() {
+            // Re-walk the schedule and recompute all start times from wakeTime
+            let cursor = parseTime(document.getElementById('wakeTime').value);
+            scheduleBlocks.forEach(b => {
+                b.time = formatTime(cursor);
+                cursor += b.dur;
+            });
+        }
+
+        function renderSchedule(blocks) {
+            scheduleBlocks = blocks;
+            document.getElementById('outputContainer').style.display = 'block';
+            _drawTimeline();
+        }
+
+        function _drawTimeline() {
+            recalcTimes();
+            const container = document.getElementById('scheduleBlocks');
+            container.innerHTML = '<div class="timeline-container" id="pdf-area"></div>';
+            const timeline = container.querySelector('#pdf-area');
+
+            scheduleBlocks.forEach((b, i) => {
+                let hClass = 'dur-short';
+                if (b.dur > 45) hClass = 'dur-med';
+                if (b.dur > 90) hClass = 'dur-long';
+
+                const el = document.createElement('div');
+                el.className = `timeline-block ${hClass} type-${b.type}`;
+                el.draggable = true;
+                el.dataset.index = i;
+
+                el.innerHTML = `
+                    <div class="timeline-dot"></div>
+                    <div style="display:flex;align-items:flex-start;gap:0.4rem">
+                        <span class="drag-handle" title="Drag to reorder">⠿</span>
+                        <div style="flex:1;min-width:0">
+                            <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                                <span class="text-[10px] font-bold text-slate-400 uppercase">${b.time}</span>
+                                <div style="display:flex;align-items:center;gap:4px">
+                                    <input class="dur-edit" value="${b.dur}" title="Duration in minutes"
+                                        onchange="updateDur(${i}, this.value)"
+                                        onclick="event.stopPropagation()"> <span style="font-size:9px;color:#94a3b8;font-weight:800">M</span>
+                                    <span class="type-badge">${b.type}</span>
+                                </div>
+                            </div>
+                            <input class="inline-edit" value="${b.name}"
+                                onchange="updateName(${i}, this.value)"
+                                onclick="event.stopPropagation()">
+                            <div class="block-controls">
+                                <button class="block-ctrl-btn" onclick="addBlockAfter(${i})">+ Add after</button>
+                                <button class="block-ctrl-btn" onclick="cycleType(${i})">⟳ Type: ${b.type}</button>
+                                <button class="block-ctrl-btn danger" onclick="deleteBlock(${i})">✕ Remove</button>
+                            </div>
+                        </div>
+                    </div>`;
+
+                // Drag events
+                el.addEventListener('dragstart', e => {
+                    dragSrc = i;
+                    setTimeout(() => el.classList.add('dragging'), 0);
+                    e.dataTransfer.effectAllowed = 'move';
+                });
+                el.addEventListener('dragend', () => {
+                    el.classList.remove('dragging');
+                    document.querySelectorAll('.timeline-block').forEach(b => b.classList.remove('drag-over'));
+                    dragSrc = null;
+                });
+                el.addEventListener('dragover', e => {
+                    e.preventDefault();
+                    if (dragSrc !== null && dragSrc !== i) {
+                        document.querySelectorAll('.timeline-block').forEach(b => b.classList.remove('drag-over'));
+                        el.classList.add('drag-over');
+                    }
+                });
+                el.addEventListener('dragleave', () => el.classList.remove('drag-over'));
+                el.addEventListener('drop', e => {
+                    e.preventDefault();
+                    el.classList.remove('drag-over');
+                    if (dragSrc === null || dragSrc === i) return;
+                    const moved = scheduleBlocks.splice(dragSrc, 1)[0];
+                    const targetIdx = dragSrc < i ? i - 1 : i;
+                    scheduleBlocks.splice(targetIdx, 0, moved);
+                    _drawTimeline();
+                });
+
+                timeline.appendChild(el);
+            });
+
+            // Add-block button at bottom
+            const addBtn = document.createElement('button');
+            addBtn.className = 'block-ctrl-btn';
+            addBtn.style.cssText = 'display:block;width:100%;margin-top:0.5rem;padding:8px;border-radius:12px;font-size:11px';
+            addBtn.textContent = '+ Add a block';
+            addBtn.onclick = () => {
+                scheduleBlocks.push({ name: 'New task', dur: 30, type: 'task' });
+                _drawTimeline();
+                setTimeout(() => {
+                    const inputs = document.querySelectorAll('.inline-edit');
+                    inputs[inputs.length - 1]?.focus();
+                    inputs[inputs.length - 1]?.select();
+                }, 50);
+            };
+            timeline.appendChild(addBtn);
+
+            container.appendChild(timeline);
+        }
+
+        function updateName(i, val) {
+            scheduleBlocks[i].name = val;
+            recalcTimes();
+            // Just update the time labels without full redraw
+            document.querySelectorAll('.timeline-block').forEach((el, idx) => {
+                const timeEl = el.querySelector('.text-\\[10px\\]');
+                if (timeEl) timeEl.textContent = scheduleBlocks[idx]?.time || '';
+            });
+        }
+
+        function updateDur(i, val) {
+            const mins = parseInt(val);
+            if (isNaN(mins) || mins < 1) return;
+            scheduleBlocks[i].dur = mins;
+            // Update height class
+            const el = document.querySelectorAll('.timeline-block')[i];
+            if (el) {
+                el.classList.remove('dur-short', 'dur-med', 'dur-long');
+                el.classList.add(mins > 90 ? 'dur-long' : mins > 45 ? 'dur-med' : 'dur-short');
+            }
+            recalcTimes();
+            _drawTimeline();
+        }
+
+        function deleteBlock(i) {
+            scheduleBlocks.splice(i, 1);
+            _drawTimeline();
+        }
+
+        function addBlockAfter(i) {
+            scheduleBlocks.splice(i + 1, 0, { name: 'New task', dur: 30, type: 'task' });
+            _drawTimeline();
+            setTimeout(() => {
+                const inputs = document.querySelectorAll('.inline-edit');
+                inputs[i + 1]?.focus();
+                inputs[i + 1]?.select();
+            }, 50);
+        }
+
+        function cycleType(i) {
+            const types = ['task', 'buffer', 'break'];
+            const cur = types.indexOf(scheduleBlocks[i].type);
+            scheduleBlocks[i].type = types[(cur + 1) % types.length];
+            _drawTimeline();
+        }
+
+        function exportToPDF() {
+            const element = document.getElementById('pdf-area');
+            const opt = {
+                margin: 0.5,
+                filename: 'My_Daily_Schedule.pdf',
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+            html2pdf().set(opt).from(element).save();
+        }
+
+        function clearSchedule() {
+            document.getElementById('taskInput').value = '';
+            document.getElementById('outputContainer').style.display = 'none';
+        }
+
+        function copyToClipboard() {
+            const text = Array.from(document.querySelectorAll('.timeline-block'))
+                .map(el => el.innerText.replace(/\n/g, ' ')).join('\n');
+            navigator.clipboard.writeText(text);
+            alert("Schedule copied to clipboard!");
+        }
+
+// renderLibrary called on schedule page open via goToPage
+
+// ═══════════════════════
+// TASK GOBLIN
+// ═══════════════════════
+function generateSteps(task,count){
+  const t=task.toLowerCase();
+  const all=[];
+  if(t.includes('clean')||t.includes('tidy')||t.includes('organis')||t.includes('organiz')){return[{text:"Pick just one small area to start",sub:"Not the whole room — one corner, one shelf"},{text:"Get a bin bag, walk around removing rubbish",sub:"Just rubbish. That's it for now."},{text:"Collect dishes/glasses, bring to kitchen",sub:"Just gathering — not washing yet"},{text:"Wipe down one surface",sub:"One spray, one wipe. Done."},{text:"Tidy the floor — pick up 10 things",sub:"Set a number so it feels finishable"},{text:"Put clean things back in their place",sub:"Things already clean, just misplaced"},{text:"Quick vacuum or sweep of ONE room",sub:"One room only. That counts."},{text:"Wash dishes or load dishwasher",sub:"Just this — you've already done a lot"},{text:"Take a 5 min break, acknowledge the progress",sub:"You started. That's the hardest part."},{text:"Final scan: anything that bugs you?",sub:"One last walk, fix what stands out most"}].slice(0,count)}
+  if(t.includes('email')||t.includes('reply')||t.includes('message')||t.includes('respond')){return[{text:"Open the app — don't read anything yet",sub:"Just opening it. That's step one."},{text:"Skim subject lines only",sub:"Action needed vs. just info"},{text:"Pick the ONE easiest email to reply to",sub:"Not the scariest — the easiest"},{text:"Write a messy draft first",sub:"Get thoughts down, don't polish yet"},{text:"Read back once, hit send",sub:"Good enough is perfect"},{text:"Archive anything you don't need",sub:"Clear inbox = clearer mind"},{text:"Take a break",sub:"One reply done is a real win"}].slice(0,count)}
+  if(t.includes('write')||t.includes('essay')||t.includes('report')||t.includes('assignment')){return[{text:"Open a blank document — just that",sub:"Don't think about writing yet"},{text:"Brain dump: every thought about this topic",sub:"No sentences needed. Just dump."},{text:"Identify your 3 main points from the dump",sub:"Highlight or circle what stands out"},{text:"Write a rough outline — headings only",sub:"Structure first, words after"},{text:"Write the easiest section first",sub:"Skip the intro — it's hardest"},{text:"Fill in another section",sub:"Momentum is building now"},{text:"Write the intro last",sub:"Now you know what you're introducing"},{text:"One read-through for big gaps",sub:"Don't edit yet — just check flow"},{text:"Spellcheck and light tidy",sub:"One pass is enough for a first draft"},{text:"Save, close, step away",sub:"First draft done. Real progress."}].slice(0,count)}
+  if(t.includes('shower')||t.includes('bath')||t.includes('wash')){return[{text:"Get a towel, put it in the bathroom",sub:"Micro-start. Just prep."},{text:"Turn the shower on to warm up",sub:"Just the tap. That's it."},{text:"Take off your clothes",sub:"One item at a time is fine"},{text:"Step in — you're basically there",sub:"Starting is the hardest part"},{text:"Wash — hair first or body, your call",sub:"No rules, just get clean"},{text:"Rinse, step out, done",sub:"You did it"}].slice(0,count)}
+  if(t.includes('phone')||t.includes('call')||t.includes('ring')){return[{text:"Find the number first",sub:"Just find it. Write it down. Stop there."},{text:"Choose a specific time to make the call",sub:"Schedule it like an appointment"},{text:"Write what you need to say in 2-3 bullet points",sub:"A script helps enormously"},{text:"Dial and breathe",sub:"You know what you need to say"},{text:"Make the call (script in hand is totally fine)",sub:"Reading from notes is not cheating"},{text:"Hang up and tick it off",sub:"The dread was worse than the actual call"}].slice(0,count)}
+  // Generic fallback
+  return[{text:`Acknowledge "${task}" is on your list`,sub:"You've started just by naming it"},{text:"Define what 'done' actually looks like",sub:"Minimum acceptable outcome?"},{text:"Gather everything you'll need first",sub:"Tools, links, materials — just collect them"},{text:"Do the very first physical action",sub:"Open the file. Get out of bed. One move."},{text:"Work for just 10 minutes — set a timer",sub:"You can stop after 10. Really."},{text:"Check in: what's left?",sub:"Usually less than you feared"},{text:"Finish or schedule the rest",sub:"Progress counts even if not complete"},{text:"Note what went well",sub:"Build the habit of noticing wins"},{text:"Reward yourself briefly",sub:"Tea, stretch, 5 mins of something nice"},{text:"Mark it done",sub:"You did the thing."}].slice(0,count);
+}
+let goblinTasks=[];
+function runGoblin(){
+  const input=document.getElementById('goblinInput').value.trim();
+  const count=parseInt(document.getElementById('goblinSteps').value);
+  if(!input){document.getElementById('goblinInput').focus();return}
+  goblinTasks=generateSteps(input,count);
+  const list=document.getElementById('taskList');list.innerHTML='';
+  goblinTasks.forEach((step,i)=>{
+    const li=document.createElement('li');li.className='task-item';li.style.animationDelay=`${i*.07}s`;li.dataset.index=i;
+    li.innerHTML=`<div class="task-check" id="check-${i}"></div><div class="task-text"><div>${step.text}</div><div class="task-step">${step.sub}</div></div>`;
+    li.addEventListener('click',()=>toggleTask(i));list.appendChild(li);
+  });
+  list.style.display='block';document.getElementById('taskProgress').style.display='block';
+  document.getElementById('goblinDone').style.display='none';updateProgress();
+}
+function toggleTask(i){
+  const item=document.querySelector(`.task-item[data-index="${i}"]`);
+  const check=document.getElementById(`check-${i}`);
+  const done=item.classList.toggle('done');check.textContent=done?'✓':'';updateProgress();
+}
+function updateProgress(){
+  const items=document.querySelectorAll('.task-item'),done=document.querySelectorAll('.task-item.done').length;
+  const pct=items.length?(done/items.length)*100:0;
+  document.getElementById('taskProgressFill').style.width=pct+'%';
+  document.getElementById('goblinDone').style.display=(done===items.length&&items.length>0)?'block':'none';
+}
+
+// ═══════════════════════
+// FOCUS TIMER
+// ═══════════════════════
+let timerInterval=null,timerRunning=false,timerSeconds=0,timerTotal=0,timerPhaseState='focus',pomodoroCount=0,totalFocusSeconds=0;
+const CIRC=502;
+function getFocusSecs(){return(parseInt(document.getElementById('focusMins').value)||25)*60}
+function getBreakSecs(){return(parseInt(document.getElementById('breakMins').value)||5)*60}
+function initTimer(){timerPhaseState='focus';timerTotal=getFocusSecs();timerSeconds=timerTotal;updateTimerDisplay();setRing(1);document.getElementById('timerPhase').textContent='FOCUS'}
+function updateTimerDisplay(){const m=Math.floor(timerSeconds/60),s=timerSeconds%60;document.getElementById('timerDisplay').textContent=`${m}:${String(s).padStart(2,'0')}`}
+function setRing(f){document.getElementById('timerRing').style.strokeDashoffset=CIRC*(1-f)}
+function toggleTimer(){timerRunning?pauseTimer():startTimer()}
+function startTimer(){
+  timerRunning=true;document.getElementById('timerStartBtn').textContent='⏸ Pause';
+  timerInterval=setInterval(()=>{
+    timerSeconds--;if(timerPhaseState==='focus')totalFocusSeconds++;
+    updateTimerDisplay();setRing(timerSeconds/timerTotal);updateTimerStats();
+    if(timerSeconds<=0){clearInterval(timerInterval);timerRunning=false;nextPhase()}
+  },1000);
+}
+function pauseTimer(){timerRunning=false;clearInterval(timerInterval);document.getElementById('timerStartBtn').textContent='▶ Resume'}
+function resetTimer(){clearInterval(timerInterval);timerRunning=false;document.getElementById('timerStartBtn').textContent='▶ Start';initTimer()}
+function skipPhase(){clearInterval(timerInterval);timerRunning=false;document.getElementById('timerStartBtn').textContent='▶ Start';nextPhase()}
+function nextPhase(){
+  if(timerPhaseState==='focus'){pomodoroCount++;timerPhaseState='break';timerTotal=getBreakSecs();document.getElementById('timerPhase').textContent='BREAK'}
+  else{timerPhaseState='focus';timerTotal=getFocusSecs();document.getElementById('timerPhase').textContent='FOCUS'}
+  timerSeconds=timerTotal;setRing(1);updateTimerDisplay();updateTimerStats();
+}
+function updateTimerStats(){document.getElementById('pomodoroCount').textContent=pomodoroCount;document.getElementById('totalFocusTime').textContent=Math.floor(totalFocusSeconds/60)+'m'}
+function switchMode(mode,tab){
+  document.querySelectorAll('.mode-tab').forEach(t=>t.classList.remove('active'));tab.classList.add('active');
+  document.getElementById('timerMode').style.display=mode!=='breathe'?'block':'none';
+  document.getElementById('breatheMode').style.display=mode==='breathe'?'flex':'none';
+  if(mode==='pomodoro'){document.getElementById('focusMins').value=25;document.getElementById('breakMins').value=5;resetTimer()}
+}
+let breathInterval=null,breathRunning=false;
+function startBreathing(){if(breathRunning)return;breathRunning=true;document.getElementById('breathStartBtn').textContent='Running...';runBreathCycle()}
+function stopBreathing(){breathRunning=false;clearTimeout(breathInterval);const c=document.getElementById('breathCircle');c.className='breath-circle';c.textContent='breathe';document.getElementById('breathText').textContent='Press start when ready';document.getElementById('breathStartBtn').textContent='Start'}
+function runBreathCycle(){
+  if(!breathRunning)return;
+  const c=document.getElementById('breathCircle'),t=document.getElementById('breathText');
+  c.className='breath-circle inhale';c.textContent='🌬';t.textContent='Inhale... (4s)';
+  breathInterval=setTimeout(()=>{if(!breathRunning)return;c.className='breath-circle hold';c.textContent='⏸';t.textContent='Hold... (4s)';
+    breathInterval=setTimeout(()=>{if(!breathRunning)return;c.className='breath-circle exhale';c.textContent='〰';t.textContent='Exhale slowly... (6s)';
+      breathInterval=setTimeout(()=>runBreathCycle(),6000)},4000)},4000);
+}
+
+// ═══════════════════════
+// BRAIN DUMP
+// ═══════════════════════
+const actionWords=['call','email','reply','send','buy','get','clean','tidy','write','book','pay','fix','order','schedule','finish','start','do','make','check','visit','pick up','drop','return','update','submit'];
+const feelWords=['feel','feeling','felt','worried','anxious','stressed','tired','exhausted','sad','scared','nervous','overwhelmed','angry','frustrated','lonely','happy','excited','confused','guilty','ashamed','afraid','unsure','hurt','upset','annoyed'];
+const laterWords=['maybe','someday','eventually','one day','think about','wondering','consider','idea','what if','could','might','future'];
+function runDump(){
+  const raw=document.getElementById('dumpInput').value;
+  if(!raw.trim())return;
+  const sentences=raw.split(/[.,!?\n]+/).map(s=>s.trim()).filter(Boolean);
+  const cats={do:[],feel:[],later:[],release:[]};
+  sentences.forEach(s=>{
+    const l=s.toLowerCase();
+    const isAction=actionWords.some(w=>l.includes(w));
+    const isFeel=feelWords.some(w=>l.includes(w));
+    const isLater=laterWords.some(w=>l.includes(w));
+    if(isFeel)cats.feel.push(s);
+    else if(isLater)cats.later.push(s);
+    else if(isAction)cats.do.push(s);
+    else cats.release.push(s);
+  });
+  ['do','feel','later','release'].forEach(cat=>{
+    const ul=document.getElementById(`dump-${cat}`);ul.innerHTML='';
+    (cats[cat].length?cats[cat]:['(nothing here right now)']).forEach((item,i)=>{
+      const li=document.createElement('li');li.textContent=item;li.style.animationDelay=`${i*.05}s`;ul.appendChild(li);
+    });
+  });
+  document.getElementById('dumpCategories').style.display='grid';
+}
+function clearDump(){document.getElementById('dumpInput').value='';document.getElementById('dumpCategories').style.display='none'}
+
+// ═══════════════════════
+// ONE THING
+// ═══════════════════════
+const encouragements=['You only need to start. That\'s all.','One thing at a time is always enough.','Starting is the hardest step. You\'ve got this.','You don\'t have to do everything. Just this one thing.','Even 10 minutes on this counts. Really.'];
+const reasons={
+  low:{tiny:['It\'s quick — you\'ll barely notice doing it','Short tasks protect your energy on hard days'],short:['Doable without draining you','Your energy needs protecting today'],long:['Low energy is real — break this into chunks first','Consider doing half now and half later']},
+  medium:{tiny:['Quick win to build momentum'],short:['Good match for your current energy level'],long:['You have enough focus for this — take breaks every 30 mins']},
+  high:{tiny:['Knock it out fast, then move to bigger things'],short:['Good use of your energy window'],long:['Your peak window — tackle this fully now']}
+};
+function pickOneThing(){
+  const tasks=document.getElementById('oneThingInput').value.split('\n').map(t=>t.trim()).filter(Boolean);
+  if(!tasks.length)return;
+  const energy=document.getElementById('oneThingEnergy').value;
+  const time=document.getElementById('oneThingTime').value;
+  // Simple scoring: prefer shorter-looking tasks on low energy
+  let scored=tasks.map(t=>({t,score:Math.random()}));
+  if(energy==='low')scored=scored.map(s=>({...s,score:s.score+(s.t.length<20?0.5:0)}));
+  if(time==='tiny')scored=scored.map(s=>({...s,score:s.score+(s.t.length<15?0.4:0)}));
+  scored.sort((a,b)=>b.score-a.score);
+  const chosen=scored[0].t;
+  const reasonSet=reasons[energy]?.[time]||['This is a good choice right now'];
+  const reason=reasonSet[Math.floor(Math.random()*reasonSet.length)];
+  const enc=encouragements[Math.floor(Math.random()*encouragements.length)];
+  document.getElementById('oneThingTask').textContent=chosen;
+  document.getElementById('oneThingWhy').textContent='Why this one: '+reason;
+  document.getElementById('oneThingEncourage').textContent=enc;
+  const r=document.getElementById('oneThingResult');r.style.display='block';r.style.animation='none';r.offsetHeight;r.style.animation='fadeSlide .35s ease';
+}
+
+// ═══════════════════════
+// TRANSITION TIMER
+// ═══════════════════════
+let transInterval=null,transSecs=0,transTotal=0,nudges=[];
+function setTransitionPreset(mins,label){
+  document.getElementById('transitionMins').value=mins;
+  document.getElementById('transitionLabel').value=label;
+}
+function startTransition(){
+  clearInterval(transInterval);
+  const mins=parseInt(document.getElementById('transitionMins').value)||15;
+  const label=document.getElementById('transitionLabel').value||'Time to go';
+  transTotal=mins*60;transSecs=transTotal;
+  // Build nudge points
+  nudges=[];
+  const pcts=[{pct:.75,msg:'75% of time used'},{pct:.5,msg:'Halfway there'},{pct:.25,msg:'Quarter left — start wrapping up'},{pct:.1,msg:'Almost time!'}];
+  pcts.forEach(p=>{
+    const at=Math.floor(transTotal*(1-p.pct));
+    const secsLeft=Math.floor(transTotal*p.pct);
+    const mLeft=Math.floor(secsLeft/60),sLeft=secsLeft%60;
+    nudges.push({at,msg:p.msg,secsLeft:`${mLeft}:${String(sLeft).padStart(2,'0')} remaining`,fired:false});
+  });
+  renderNudges(label);
+  document.getElementById('transitionDisplay').style.display='block';
+  updateTransitionDisplay();
+  transInterval=setInterval(()=>{
+    transSecs--;
+    if(transSecs<=0){clearInterval(transInterval);document.getElementById('transitionBig').textContent='GO!';document.getElementById('transitionBig').style.color='var(--accent)';return}
+    updateTransitionDisplay();
+    nudges.forEach(n=>{
+      if(!n.fired&&transSecs<=transTotal-n.at){n.fired=true;fireNudge(n)}
+    });
+  },1000);
+}
+function updateTransitionDisplay(){
+  const m=Math.floor(transSecs/60),s=transSecs%60;
+  document.getElementById('transitionBig').textContent=`${m}:${String(s).padStart(2,'0')}`;
+  document.getElementById('transitionBig').style.color='var(--text)';
+  document.getElementById('transitionBar').style.width=(transSecs/transTotal*100)+'%';
+}
+function renderNudges(label){
+  document.getElementById('transitionLabelDisplay').textContent=label;
+  const ul=document.getElementById('nudgeList');ul.innerHTML='';
+  nudges.forEach((n,i)=>{
+    const li=document.createElement('li');li.className='nudge-item';li.id=`nudge-${i}`;
+    li.innerHTML=`<span class="nudge-dot"></span><span>${n.msg} — ${n.secsLeft}</span>`;
+    ul.appendChild(li);
+  });
+}
+function fireNudge(n){
+  const i=nudges.indexOf(n);
+  const el=document.getElementById(`nudge-${i}`);
+  if(el)el.classList.add('fired');
+  if(Notification.permission==='granted')new Notification(`🧌 ${n.msg}`,{body:n.secsLeft});
+}
+function stopTransition(){clearInterval(transInterval);document.getElementById('transitionDisplay').style.display='none'}
+
+// ═══════════════════════
+// SCRIPT BUILDER
+// ═══════════════════════
+let selectedSit='cancel';
+function selectSit(btn){
+  document.querySelectorAll('.sit-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');selectedSit=btn.dataset.sit;
+}
+
+// ═══════════════════════
+// SENSORY TOOLKIT
+// ═══════════════════════
+const defaultSensory={
+  '🚨 When Overstimulated':{color:'red',favourites:[],items:['Put headphones on (silence or white noise)','Go to a quieter room','Dim the lights or close blinds','Weighted blanket or heavy duvet','Reduce to one sense at a time','Cold water on wrists or face','Slow your breathing (4-4-6)','Take shoes off, feel the floor']},
+  '😰 When Anxious':{color:'orange',favourites:[],items:['Name 5 things you can see','Slow breathing — exhale longer than inhale','Hold something cold or textured','Wrap yourself in something heavy','Remind yourself: this feeling will pass','Hum, rock, or stim if it helps','Text someone safe','Go outside briefly if you can']},
+  '🧊 Calming Sensory':{color:'blue',favourites:[],items:['Ice cubes to hold','Smooth stones or fidget objects','Soft fabric or plushie','Running water sounds','Low lighting or fairy lights','Herbal tea (warm mug to hold)','Weighted lap pad','Chewing gum or crunchy snack']},
+  '⚡ Warning Signs':{color:'yellow',favourites:[],items:['Getting unusually quiet','Irritability or snapping','Difficulty making decisions','Everything feels too loud/bright','Hard to find words','Feeling "buzzy" or disconnected','Needing to escape a situation']}
+};
+let sensoryData={};
+function initSensory(){
+  const saved=loadData('sensoryData');
+  sensoryData=saved||JSON.parse(JSON.stringify(defaultSensory));
+  // Ensure all categories have a favourites array (migration for existing data)
+  Object.values(sensoryData).forEach(cat=>{ if(!cat.favourites) cat.favourites=[]; });
+  renderSensory();
+}
+function renderSensory(){
+  const grid=document.getElementById('sensoryGrid');grid.innerHTML='';
+  Object.entries(sensoryData).forEach(([title,data])=>{
+    const section=document.createElement('div');section.className='sensory-section';
+    const colorMap={red:'var(--red)',orange:'var(--orange)',blue:'var(--accent3)',yellow:'var(--yellow)',green:'var(--green)',purple:'var(--accent)'};
+    const col=colorMap[data.color]||'var(--accent)';
+    section.innerHTML=`<div class="sensory-title" style="color:${col}">${title}</div><div class="sensory-chips" id="chips-${slugify(title)}"></div><div class="sensory-add"><input type="text" placeholder="Add your own..." class="sensory-input-${slugify(title)}"><button class="btn btn-ghost btn-sm" onclick="addSensoryItem('${title}')">Add</button></div>`;
+    grid.appendChild(section);
+    const chipsDiv=section.querySelector(`#chips-${slugify(title)}`);
+    const favs=data.favourites||[];
+    // Favourites row at top if any
+    if(favs.length){
+      const favLabel=document.createElement('div');
+      favLabel.style.cssText='font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:.35rem;margin-top:.1rem';
+      favLabel.textContent='⭐ Your go-tos';
+      chipsDiv.appendChild(favLabel);
+      const favRow=document.createElement('div');favRow.style.cssText='display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.5rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)';
+      favs.forEach(item=>favRow.appendChild(makeChip(title,item,true)));
+      chipsDiv.appendChild(favRow);
+      const allLabel=document.createElement('div');
+      allLabel.style.cssText='font-size:.65rem;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted);margin-bottom:.35rem';
+      allLabel.textContent='All options';
+      chipsDiv.appendChild(allLabel);
+    }
+    data.items.forEach(item=>chipsDiv.appendChild(makeChip(title,item,favs.includes(item))));
+  });
+}
+function slugify(s){return s.replace(/[^a-zA-Z0-9]/g,'-')}
+function makeChip(title,item,isFav){
+  const chip=document.createElement('span');
+  chip.className='sensory-chip'+(isFav?' saved':'');
+  chip.title=isFav?'Saved as favourite — tap to remove':'Tap to save as favourite';
+  chip.addEventListener('click',function(e){
+    if(e.target.classList.contains('remove')) return;
+    toggleSensoryFavourite(title,item);
+  });
+  const safeTitle=title.replace(/'/g,'&#39;');
+  const safeItem=item.replace(/'/g,'&#39;');
+  chip.innerHTML=item+'<span class="remove" onclick="removeSensoryItem(\'' + safeTitle + '\',\'' + safeItem + '\',event)">✕</span>';
+  return chip;
+}
+
+function toggleSensoryFavourite(title,item){
+  if(!sensoryData[title]) return;
+  if(!sensoryData[title].favourites) sensoryData[title].favourites=[];
+  const favs=sensoryData[title].favourites;
+  const idx=favs.indexOf(item);
+  if(idx>=0) favs.splice(idx,1);
+  else favs.push(item);
+  saveData('sensoryData',sensoryData);
+  renderSensory();
+}
+function addSensoryItem(title){
+  const input=document.querySelector(`.sensory-input-${slugify(title)}`);
+  const val=input.value.trim();if(!val)return;
+  sensoryData[title].items.push(val);input.value='';
+  saveData('sensoryData',sensoryData);renderSensory();
+}
+function removeSensoryItem(title,item,e){
+  e.stopPropagation();
+  sensoryData[title].items=sensoryData[title].items.filter(i=>i!==item);
+  saveData('sensoryData',sensoryData);renderSensory();
+}
+
+// ═══════════════════════
+// WIND DOWN ROUTINE
+// ═══════════════════════
+const defaultSteps=[
+  {name:'Put phone on Do Not Disturb',dur:2,emoji:'📴'},
+  {name:'Make a warm drink',dur:5,emoji:'☕'},
+  {name:'Dim the lights',dur:1,emoji:'🕯️'},
+  {name:'Change into comfy clothes',dur:5,emoji:'👕'},
+  {name:'Gentle stretching or stillness',dur:10,emoji:'🧘'},
+  {name:'Read or listen to something calm',dur:20,emoji:'📖'},
+  {name:'Wash face & brush teeth',dur:5,emoji:'🚿'},
+  {name:'Get into bed, no screens',dur:10,emoji:'🛏️'},
+];
+let windDownSteps=[];
+function loadDefaults(){
+  const rows=document.getElementById('builderRows');rows.innerHTML='';
+  defaultSteps.forEach(s=>addBuilderRow(s.name,s.dur));
+  // drag handlers added inside addBuilderRow
+}
+function addBuilderRow(name='',dur=10){
+  const row=document.createElement('div');row.className='builder-step-row draggable';
+  row.draggable=true;
+  row.innerHTML=`<div class="drag-handle" title="Drag to reorder">⠿</div><div><input type="text" class="wd-step-name" placeholder="e.g. Make herbal tea" value="${name}"></div><div><select class="wd-step-dur">${[5,10,15,20,30].map(d=>`<option value="${d}"${d==dur?' selected':''}>${d} mins</option>`).join('')}</select></div><div style="display:flex;align-items:flex-end"><button class="btn btn-ghost btn-sm" onclick="removeBuilderRow(this)">✕</button></div>`;
+  document.getElementById('builderRows').appendChild(row);
+  initBuilderRowDrag(row);
+}
+
+function initBuilderRowDrag(row){
+  row.addEventListener('dragstart',e=>{
+    dragSrc=row;
+    setTimeout(()=>row.classList.add('dragging'),0);
+    e.dataTransfer.effectAllowed='move';
+  });
+  row.addEventListener('dragend',()=>{
+    row.classList.remove('dragging');
+    document.querySelectorAll('.builder-step-row').forEach(r=>r.classList.remove('drag-over'));
+    dragSrc=null;
+  });
+  row.addEventListener('dragover',e=>{
+    e.preventDefault();
+    if(dragSrc&&dragSrc!==row&&dragSrc.classList.contains('builder-step-row')){
+      row.classList.add('drag-over');
+    }
+  });
+  row.addEventListener('dragleave',()=>row.classList.remove('drag-over'));
+  row.addEventListener('drop',e=>{
+    e.preventDefault();
+    row.classList.remove('drag-over');
+    if(!dragSrc||dragSrc===row||!dragSrc.classList.contains('builder-step-row')) return;
+    const container=document.getElementById('builderRows');
+    const rows=[...container.querySelectorAll('.builder-step-row')];
+    const fromIdx=rows.indexOf(dragSrc);
+    const toIdx=rows.indexOf(row);
+    if(fromIdx<toIdx) container.insertBefore(dragSrc,row.nextSibling);
+    else container.insertBefore(dragSrc,row);
+  });
+}
+function removeBuilderRow(btn){btn.closest('.builder-step-row').remove()}
+function saveWindDown(){
+  const names=document.querySelectorAll('.wd-step-name');
+  const durs=document.querySelectorAll('.wd-step-dur');
+  windDownSteps=[];
+  names.forEach((n,i)=>{if(n.value.trim())windDownSteps.push({name:n.value.trim(),dur:parseInt(durs[i].value),emoji:pickEmoji(n.value)})});
+  if(!windDownSteps.length)return;
+  saveData('windDownSteps',windDownSteps);
+  renderWindDown();
+  document.getElementById('winddownBuilder').style.display='none';
+  document.getElementById('winddownRoutine').style.display='block';
+  document.getElementById('savedBadge').style.display='inline-block';
+}
+function pickEmoji(name){
+  const n=name.toLowerCase();
+  if(n.includes('tea')||n.includes('drink'))return '☕';
+  if(n.includes('phone')||n.includes('screen')||n.includes('device'))return '📵';
+  if(n.includes('light')||n.includes('lamp')||n.includes('dim'))return '🕯️';
+  if(n.includes('clothes')||n.includes('pyjama')||n.includes('pajama'))return '👕';
+  if(n.includes('stretch')||n.includes('yoga'))return '🧘';
+  if(n.includes('read')||n.includes('book'))return '📖';
+  if(n.includes('wash')||n.includes('brush')||n.includes('teeth')||n.includes('shower'))return '🚿';
+  if(n.includes('bed')||n.includes('sleep'))return '🛏️';
+  if(n.includes('breath'))return '🌬️';
+  if(n.includes('music')||n.includes('podcast'))return '🎧';
+  if(n.includes('journal')||n.includes('write'))return '✏️';
+  return '✨';
+}
+function renderWindDown(){
+  const ul=document.getElementById('winddownSteps');ul.innerHTML='';
+  windDownSteps.forEach((s,i)=>{
+    const li=document.createElement('li');li.className='winddown-step draggable';li.style.animationDelay=`${i*.07}s`;li.dataset.index=i;
+    li.draggable=true;
+    li.innerHTML=`<div class="drag-handle" title="Hold and drag to reorder">⠿</div><span class="step-emoji">${s.emoji}</span><div class="step-text"><div class="step-name">${s.name}</div><div class="step-note">about ${s.dur} min${s.dur!==1?'s':''}</div></div><span class="step-dur">${s.dur}m</span><div class="step-check" onclick="toggleWindDown(${i})"></div>`;
+    initWindDownDrag(li);
+    ul.appendChild(li);
+  });
+  document.getElementById('winddownComplete').style.display='none';
+}
+function toggleWindDown(i){
+  const item=document.querySelector(`.winddown-step[data-index="${i}"]`);
+  const done=item.classList.toggle('done');
+  item.querySelector('.step-check').textContent=done?'✓':'';
+  const all=document.querySelectorAll('.winddown-step'),allDone=document.querySelectorAll('.winddown-step.done');
+  if(allDone.length===all.length)document.getElementById('winddownComplete').style.display='block';
+  else document.getElementById('winddownComplete').style.display='none';
+}
+function resetWindDown(){
+  document.getElementById('winddownBuilder').style.display='block';
+  document.getElementById('winddownRoutine').style.display='none';
+  renderWindDown();
+}
+function tryLoadWindDown(){
+  const saved=loadData('windDownSteps');
+  if(saved&&saved.length){windDownSteps=saved;renderWindDown();document.getElementById('winddownBuilder').style.display='none';document.getElementById('winddownRoutine').style.display='block';document.getElementById('savedBadge').style.display='inline-block'}
+}
+
+// ═══════════════════════
+// SPARK — PARALYSIS BUSTER
+// ═══════════════════════
+const sparkActivities=[
+  // Physical
+  {cat:'physical',emoji:'🪟',activity:'Stand at a window for 2 minutes',note:'Look outside. Don\'t think about anything. Just look at what\'s out there.'},
+  {cat:'physical',emoji:'🧦',activity:'Put on your softest socks',note:'The physical sensation of something soft can genuinely shift your state.'},
+  {cat:'physical',emoji:'💧',activity:'Drink a full glass of water slowly',note:'Your brain might literally just need hydration right now.'},
+  {cat:'physical',emoji:'🐌',activity:'Walk to another room and back',note:'That\'s it. That\'s the whole thing. Movement, however tiny, helps.'},
+  {cat:'physical',emoji:'🙆',activity:'Shake your hands for 30 seconds',note:'Shake them like you\'re trying to flick water off them. Sounds weird. Works.'},
+  {cat:'physical',emoji:'🧘',activity:'3 slow shoulder rolls, each side',note:'Let them drop completely. Notice the tension releasing.'},
+  {cat:'physical',emoji:'🌬️',activity:'Take 3 deep breaths right now',note:'In through the nose, out through the mouth. Just three.'},
+  {cat:'physical',emoji:'🛁',activity:'Splash cold water on your face',note:'A small shock to your system. Reset button.'},
+  // Creative
+  {cat:'creative',emoji:'✏️',activity:'Doodle for 5 minutes — no goal',note:'Circles, squiggles, patterns. It doesn\'t mean anything. It doesn\'t have to.'},
+  {cat:'creative',emoji:'🎵',activity:'Play one song that matches your mood',note:'Not to feel better. Just to feel seen.'},
+  {cat:'creative',emoji:'🎨',activity:'Pick a colour and find 10 things that colour',note:'Look around the room. It\'s a little scavenger hunt for your brain.'},
+  {cat:'creative',emoji:'📖',activity:'Read one page of anything',note:'A book, a magazine, a random Wikipedia article. Just one page.'},
+  {cat:'creative',emoji:'🌈',activity:'Play music you loved as a teenager',note:'For 10 minutes. No explaining why.'},
+  {cat:'creative',emoji:'📷',activity:'Take 3 photos of something interesting nearby',note:'Notice light, texture, shadow. See familiar things as if for the first time.'},
+  // Comfort
+  {cat:'comfort',emoji:'🛋️',activity:'Make your space a little cosier',note:'Grab a blanket. Dim a light. Prop yourself up. Make where you are feel nicer.'},
+  {cat:'comfort',emoji:'🍵',activity:'Make yourself a warm drink',note:'Tea, coffee, hot chocolate, warm water with lemon. The ritual matters.'},
+  {cat:'comfort',emoji:'🤗',activity:'Wrap yourself in something heavy',note:'A duvet, a thick blanket, even a pile of cushions. Pressure is calming.'},
+  {cat:'comfort',emoji:'🧸',activity:'Hold something comforting',note:'A soft toy, a pet, a favourite object. Let yourself be grounded by touch.'},
+  {cat:'comfort',emoji:'🕯️',activity:'Light a candle or turn on fairy lights',note:'Changing your sensory environment can genuinely change your mood.'},
+  {cat:'comfort',emoji:'🛁',activity:'Take a warm shower or bath',note:'Not to get clean. Just to reset. Water is powerful.'},
+  {cat:'comfort',emoji:'😴',activity:'Lie down for 15 minutes — no pressure to sleep',note:'Set a timer. Just rest. Your body might need this more than anything.'},
+  {cat:'comfort',emoji:'🍫',activity:'Have a small snack you actually enjoy',note:'With zero guilt. Sometimes your blood sugar is just low. That\'s real.'},
+  // Distraction
+  {cat:'distract',emoji:'📺',activity:'Watch something easy and comforting',note:'A favourite comfort show, a gentle YouTube video, something you\'ve seen before.'},
+  {cat:'distract',emoji:'🎮',activity:'Play a simple game for 15 minutes',note:'Something casual — puzzles, idle games, anything that doesn\'t require much.'},
+  {cat:'distract',emoji:'📱',activity:'Guilt-free scroll for 10 minutes',note:'Set a timer. Scroll with full permission. No "I shouldn\'t be doing this."'},
+  {cat:'distract',emoji:'🌍',activity:'Read about something you\'re randomly curious about',note:'Wikipedia rabbit hole. Follow the links. Go wherever the interesting takes you.'},
+  {cat:'distract',emoji:'🎬',activity:'Watch something that makes you laugh',note:'Clips, bloopers, a comedian. Even one genuine laugh can shift things.'},
+  {cat:'distract',emoji:'🎧',activity:'Put on a podcast and close your eyes',note:'Interesting voices, an engaging story. Let someone else carry you for a bit.'},
+];
+let activeFilter='all';
+function toggleFilter(btn){
+  document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');activeFilter=btn.dataset.cat;
+}
+function getSpark(){
+  let pool=activeFilter==='all'?sparkActivities:sparkActivities.filter(a=>a.cat===activeFilter);
+  if(!pool.length)pool=sparkActivities;
+  const s=pool[Math.floor(Math.random()*pool.length)];
+  document.getElementById('sparkEmoji').textContent=s.emoji;
+  document.getElementById('sparkActivity').textContent=s.activity;
+  document.getElementById('sparkNote').textContent=s.note;
+  // Remove old tag
+  const old=document.getElementById('sparkCard').querySelector('.spark-tag');if(old)old.remove();
+  const tag=document.createElement('div');tag.className=`spark-tag tag-${s.cat}`;
+  const labels={physical:'🏃 Movement',creative:'🎨 Creative',comfort:'🫂 Comfort',distract:'🎮 Distraction'};
+  tag.textContent=labels[s.cat];document.getElementById('sparkCard').appendChild(tag);
+  document.getElementById('sparkCard').style.borderColor='var(--border2)';
+  setTimeout(()=>document.getElementById('sparkCard').style.borderColor='',300);
+}
+
+// ═══════════════════════
+// LOCAL STORAGE HELPERS
+// ═══════════════════════
+function saveData(key,val){try{localStorage.setItem('goblin_'+key,JSON.stringify(val))}catch(e){}}
+function loadData(key){try{const v=localStorage.getItem('goblin_'+key);return v?JSON.parse(v):null}catch(e){return null}}
+
+// ═══════════════════════
+// INIT (deferred to DOMContentLoaded)
+// ═══════════════════════
+document.addEventListener("DOMContentLoaded", function(){
+  initTimer();
+  applyDarkModeState(); // Apply saved dark mode preference
+  // sensory/winddown init handled by checkSession/applyUserProfile
+});
+
+// Scroll nav highlight removed — using page navigation
+
+document.getElementById('timerStartBtn').addEventListener('click',()=>{if(Notification.permission==='default')Notification.requestPermission()});
+
+// ═══════════════════════
+// DRAG AND DROP
+// ═══════════════════════
+let dragSrc = null;
+
+function initWindDownDrag(li){
+  li.addEventListener('dragstart',e=>{
+    dragSrc=li;
+    setTimeout(()=>li.classList.add('dragging'),0);
+    e.dataTransfer.effectAllowed='move';
+  });
+  li.addEventListener('dragend',()=>{
+    li.classList.remove('dragging');
+    document.querySelectorAll('.winddown-step').forEach(el=>el.classList.remove('drag-over'));
+    dragSrc=null;
+  });
+  li.addEventListener('dragover',e=>{
+    e.preventDefault();
+    if(dragSrc&&dragSrc!==li&&dragSrc.classList.contains('winddown-step')){
+      document.querySelectorAll('.winddown-step').forEach(el=>el.classList.remove('drag-over'));
+      li.classList.add('drag-over');
+    }
+  });
+  li.addEventListener('dragleave',()=>li.classList.remove('drag-over'));
+  li.addEventListener('drop',e=>{
+    e.preventDefault();
+    li.classList.remove('drag-over');
+    if(!dragSrc||dragSrc===li||!dragSrc.classList.contains('winddown-step')) return;
+    const fromIdx=parseInt(dragSrc.dataset.index);
+    const toIdx=parseInt(li.dataset.index);
+    // Reorder windDownSteps array
+    const moved=windDownSteps.splice(fromIdx,1)[0];
+    windDownSteps.splice(toIdx,0,moved);
+    saveData('windDownSteps',windDownSteps);
+    renderWindDown();
+  });
+}
+
+// ═══════════════════════
+// BIONIC READING
+// ═══════════════════════
+
+// ═══════════════════════
+// DARK MODE
+// ═══════════════════════
+let darkModeEnabled = (function(){ try{ return JSON.parse(localStorage.getItem('goblin_darkMode'))||false; }catch(e){return false;} })();
+
+function toggleDarkMode() {
+  darkModeEnabled = !darkModeEnabled;
+  saveData('darkMode', darkModeEnabled);
+  if(currentUser){ currentUser.prefs.darkMode = darkModeEnabled; persistUser(); }
+  applyDarkModeState();
+}
+
+function applyDarkModeState() {
+  const btn = document.getElementById('darkToggle');
+  document.body.classList.toggle('dark-mode', darkModeEnabled);
+  if(btn){ btn.textContent = darkModeEnabled ? '☀️ Light' : '🌙 Dark'; btn.classList.toggle('on', darkModeEnabled); }
+}
+
+function toggleDarkMode() {
+  darkModeEnabled = !darkModeEnabled;
+  saveData('darkMode', darkModeEnabled);
+  if(currentUser){ currentUser.prefs.darkMode = darkModeEnabled; persistUser(); }
+  applyDarkModeState();
+}
+
+function applyDarkModeState() {
+  document.body.classList.toggle('dark-mode', darkModeEnabled);
+  const btn = document.getElementById('darkToggle');
+  if(btn){ btn.textContent = darkModeEnabled ? '☀️ Light' : '🌙 Dark'; btn.classList.toggle('on', darkModeEnabled); }
+}
+
+let bionicEnabled = loadData('bionicEnabled') || false;
+
+function bionicWord(word) {
+  // Strip leading/trailing punctuation for processing
+  const match = word.match(/^([^a-zA-Z0-9]*)([a-zA-Z0-9À-ÿ''-]+)([^a-zA-Z0-9]*)$/);
+  if (!match) return word;
+  const [, pre, core, post] = match;
+  if (core.length === 0) return word;
+  const boldLen = Math.max(1, Math.ceil(core.length / 2));
+  const boldPart = core.slice(0, boldLen);
+  const restPart = core.slice(boldLen);
+  return pre + '<b class="bio">' + boldPart + '</b>' + (restPart ? '<span class="bio-rest">' + restPart + '</span>' : '') + post;
+}
+
+function applyBionic(node) {
+  // Skip script, style, input, textarea, select, button text nodes inside inputs
+  const skipTags = new Set(['SCRIPT','STYLE','INPUT','TEXTAREA','SELECT','CODE','PRE']);
+  if (node.nodeType === Node.TEXT_NODE) {
+    const parent = node.parentElement;
+    if (!parent) return;
+    // Skip if already processed
+    if (parent.closest('[data-bio-done]')) return;
+    if (skipTags.has(parent.tagName)) return;
+    // Skip placeholder-like things and very short content
+    const text = node.textContent;
+    if (!text.trim() || text.trim().length < 2) return;
+    if (!/[a-zA-Z]/.test(text)) return;
+    const words = text.split(/(\s+)/);
+    const processed = words.map(w => /\s/.test(w) ? w : bionicWord(w)).join('');
+    if (processed !== text) {
+      const span = document.createElement('span');
+      span.setAttribute('data-bio-done', '1');
+      span.innerHTML = processed;
+      node.parentNode.replaceChild(span, node);
+    }
+  } else if (node.nodeType === Node.ELEMENT_NODE) {
+    if (skipTags.has(node.tagName)) return;
+    if (node.hasAttribute('data-bio-done')) return;
+    // Don't process contenteditable or form elements
+    if (node.isContentEditable) return;
+    Array.from(node.childNodes).forEach(child => applyBionic(child));
+  }
+}
+
+function toggleBionic() {
+  bionicEnabled = !bionicEnabled;
+  saveData('bionicEnabled', bionicEnabled);
+  applyBionicState();
+}
+
+function applyBionicState() {
+  const btn = document.getElementById('bioToggle');
+  if (bionicEnabled) {
+    document.body.classList.add('bionic-on');
+    if(btn){btn.classList.add('on');btn.textContent='👁 Bionic: ON';}
+    // Process the whole body if not yet done
+    if (!document.body.hasAttribute('data-bio-processed')) {
+      applyBionic(document.body);
+      document.body.setAttribute('data-bio-processed', '1');
+    }
+  } else {
+    document.body.classList.remove('bionic-on');
+    if(btn){btn.classList.remove('on');btn.textContent='👁 Bionic';}
+  }
+}
+
+// Init bionic state on load
+if (bionicEnabled) {
+  // Small delay to let DOM render first
+  setTimeout(applyBionicState, 100);
+}
+
+// Re-apply bionic to any dynamically generated content
+const _origRenderSchedule = renderSchedule;
+renderSchedule = function(blocks) {
+  _origRenderSchedule(blocks);
+  if (bionicEnabled) setTimeout(() => applyBionic(document.getElementById('scheduleBlocks')), 50);
+};
+const _origRunGoblin = runGoblin;
+runGoblin = function() {
+  _origRunGoblin();
+  if (bionicEnabled) setTimeout(() => applyBionic(document.getElementById('taskList')), 100);
+};
+const _origRunDump = runDump;
+runDump = function() {
+  _origRunDump();
+  if (bionicEnabled) setTimeout(() => applyBionic(document.getElementById('dumpCategories')), 50);
+};
+const _origPickOneThing = pickOneThing;
+pickOneThing = function() {
+  _origPickOneThing();
+  if (bionicEnabled) setTimeout(() => applyBionic(document.getElementById('oneThingResult')), 50);
+};
+const _origGetSpark = getSpark;
+getSpark = function() {
+  _origGetSpark();
+  if (bionicEnabled) setTimeout(() => applyBionic(document.getElementById('sparkCard')), 50);
+};
+
+
+// ═══════════════════════════════════════
+// AUTH & PROFILE SYSTEM
+// ═══════════════════════════════════════
+
+// ── Storage keys ──
+const USERS_KEY   = 'goblin_users';
+const SESSION_KEY = 'goblin_session';
+
+// ── Current session ──
+let currentUser = null;
+
+// ── Helpers ──
+function getAllUsers(){
+  try{ return JSON.parse(localStorage.getItem(USERS_KEY))||{}; }catch(e){return {};}
+}
+function saveAllUsers(users){
+  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
+function getSession(){
+  try{ return JSON.parse(localStorage.getItem(SESSION_KEY)); }catch(e){return null;}
+}
+function setSession(username){
+  localStorage.setItem(SESSION_KEY, JSON.stringify({username, ts: Date.now()}));
+}
+function clearSession(){
+  localStorage.removeItem(SESSION_KEY);
+}
+
+// ── Default profile ──
+function defaultProfile(name, username){
+  return {
+    name, username,
+    passwordHash: '',
+    prefs:{
+      bionic: false,
+      largeText: false,
+      reduceMotion: false,
+      accentColor: '#c084fc',
+      wakeTime: '8:00 AM',
+      focusMins: 25,
+      breakMins: 5,
+    },
+    sensoryData: null,    // null = use defaults
+    windDownSteps: null,  // null = not set
+    scriptHistory: [],    // saved script history
+    createdAt: Date.now()
+  };
+}
+
+// ── Simple hash (not for real security, just local storage) ──
+function simpleHash(str){
+  let h=0;
+  for(let i=0;i<str.length;i++){h=((h<<5)-h)+str.charCodeAt(i);h|=0;}
+  return h.toString(16);
+}
+
+// ── Auth tab switch ──
+function switchAuthTab(tab){
+  document.getElementById('loginTab').classList.toggle('active', tab==='login');
+  document.getElementById('signupTab').classList.toggle('active', tab==='signup');
+  document.getElementById('loginForm').style.display = tab==='login'?'block':'none';
+  document.getElementById('signupForm').style.display = tab==='signup'?'block':'none';
+  hideAuthMessages();
+}
+
+function showAuthError(msg){
+  const el=document.getElementById('authError');
+  el.textContent=msg; el.style.display='block';
+  document.getElementById('authSuccess').style.display='none';
+}
+function showAuthSuccess(msg){
+  const el=document.getElementById('authSuccess');
+  el.textContent=msg; el.style.display='block';
+  document.getElementById('authError').style.display='none';
+}
+function continueAsGuest(){
+  document.getElementById('authOverlay').style.display = 'none';
+  if(!currentUser){
+    updateNavProfileGuest();
+    initSensory();
+    tryLoadWindDown();
+  }
+}
+
+function hideAuthMessages(){
+  document.getElementById('authError').style.display='none';
+  document.getElementById('authSuccess').style.display='none';
+}
+
+// ── Sign up ──
+function doSignup(){
+  const name = document.getElementById('signupName').value.trim();
+  const username = document.getElementById('signupUsername').value.trim().toLowerCase().replace(/\s+/g,'');
+  const password = document.getElementById('signupPassword').value;
+  if(!name){ showAuthError('Please enter a display name.'); return; }
+  if(!username||username.length<2){ showAuthError('Username must be at least 2 characters.'); return; }
+  if(!password||password.length<4){ showAuthError('Password must be at least 4 characters.'); return; }
+  const users = getAllUsers();
+  if(users[username]){ showAuthError('That username is already taken. Try another one.'); return; }
+  const profile = defaultProfile(name, username);
+  profile.passwordHash = simpleHash(password);
+  users[username] = profile;
+  saveAllUsers(users);
+  showAuthSuccess('Account created! Signing you in...');
+  setTimeout(()=>loginUser(username), 800);
+}
+
+// ── Login ──
+function doLogin(){
+  const username = document.getElementById('loginUsername').value.trim().toLowerCase();
+  const password = document.getElementById('loginPassword').value;
+  if(!username||!password){ showAuthError('Please fill in both fields.'); return; }
+  const users = getAllUsers();
+  const user = users[username];
+  if(!user){ showAuthError("We don't recognise that username. Want to create an account?"); return; }
+  if(user.passwordHash !== simpleHash(password)){ showAuthError('Incorrect password. Please try again.'); return; }
+  loginUser(username);
+}
+
+function loginUser(username){
+  const users = getAllUsers();
+  currentUser = users[username];
+  setSession(username);
+  document.getElementById('authOverlay').style.display = 'none';
+  // Restore task library from profile
+  if(currentUser.taskLibrary && currentUser.taskLibrary.length) {
+    localStorage.setItem('taskLibrary', JSON.stringify(currentUser.taskLibrary));
+  }
+  applyUserProfile();
+  updateNavProfile();
+}
+
+// ── Logout ──
+function doLogout(){
+  // Save current sensory/winddown state before logging out
+  if(currentUser) saveCurrentStateToProfile();
+  currentUser = null;
+  clearSession();
+  closeProfilePage();
+  closeProfileDropdown();
+  // Reset to defaults
+  resetToDefaults();
+  document.getElementById('authOverlay').style.display = 'flex';
+}
+
+// ── Apply profile settings on login ──
+function applyUserProfile(){
+  if(!currentUser) return;
+  const p = currentUser.prefs;
+
+  // Dark mode
+  darkModeEnabled = p.darkMode || false;
+  applyDarkModeState();
+
+  // Dark mode
+  darkModeEnabled = p.darkMode || false;
+  applyDarkModeState();
+
+  // Bionic reading
+  bionicEnabled = p.bionic || false;
+  applyBionicState();
+
+  // Large text
+  if(p.largeText) document.body.style.fontSize = '17px';
+  else document.body.style.fontSize = '15px';
+
+  // Reduce motion
+  if(p.reduceMotion){
+    const s=document.createElement('style');s.id='reduceMotionStyle';
+    s.textContent='*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}';
+    document.head.appendChild(s);
+  } else {
+    const existing=document.getElementById('reduceMotionStyle');
+    if(existing) existing.remove();
+  }
+
+  // Accent colour
+  if(p.accentColor) applyAccentColor(p.accentColor);
+
+  // Wake time & timer defaults
+  if(p.wakeTime) {
+    // Convert "8:00 AM" format to "08:00" for time input
+    let wt = p.wakeTime;
+    const ampmMatch = wt.match(/(\d+):(\d+)\s*(AM|PM)/i);
+    if(ampmMatch) {
+      let h=parseInt(ampmMatch[1]), m=parseInt(ampmMatch[2]), ap=ampmMatch[3].toUpperCase();
+      if(ap==='PM' && h!==12) h+=12;
+      if(ap==='AM' && h===12) h=0;
+      wt = String(h).padStart(2,'0') + ':' + String(m).padStart(2,'0');
+    }
+    document.getElementById('wakeTime').value = wt;
+  }
+  if(p.focusMins){ document.getElementById('focusMins').value = p.focusMins; resetTimer(); }
+  if(p.breakMins) document.getElementById('breakMins').value = p.breakMins;
+
+  // Sensory data
+  if(currentUser.sensoryData){
+    sensoryData = JSON.parse(JSON.stringify(currentUser.sensoryData));
+    renderSensory();
+  } else {
+    initSensory();
+  }
+
+  // Wind-down steps
+  if(currentUser.windDownSteps && currentUser.windDownSteps.length){
+    windDownSteps = currentUser.windDownSteps;
+    renderWindDown();
+    const wb=document.getElementById('winddownBuilder');
+    const wr=document.getElementById('winddownRoutine');
+    const sb=document.getElementById('savedBadge');
+    if(wb) wb.style.display='none';
+    if(wr) wr.style.display='block';
+    if(sb) sb.style.display='inline-block';
+  }
+}
+
+function applyAccentColor(color){
+  document.documentElement.style.setProperty('--accent', color);
+  // Derive accent2 as slightly different shade
+  document.documentElement.style.setProperty('--accent2', color);
+  document.documentElement.style.setProperty('--glow', hexToRgba(color, 0.13));
+}
+
+function hexToRgba(hex, alpha){
+  const r=parseInt(hex.slice(1,3),16);
+  const g=parseInt(hex.slice(3,5),16);
+  const b=parseInt(hex.slice(5,7),16);
+  return `rgba(${r},${g},${b},${alpha})`;
+}
+
+function resetToDefaults(){
+  document.documentElement.style.setProperty('--accent','#c084fc');
+  document.documentElement.style.setProperty('--accent2','#a78bfa');
+  document.documentElement.style.setProperty('--glow','rgba(192,132,252,0.13)');
+  document.body.style.fontSize = '15px';
+  const existing=document.getElementById('reduceMotionStyle');
+  if(existing) existing.remove();
+  bionicEnabled = false;
+  applyBionicState();
+  initSensory();
+  windDownSteps = [];
+}
+
+// ── Update nav profile button ──
+function updateNavProfile(){
+  if(!currentUser) return;
+  const initials = currentUser.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('navAvatar').textContent = initials;
+  const firstName = currentUser.name.split(' ')[0];
+  document.getElementById('navName').textContent = firstName;
+}
+
+function updateNavProfileGuest(){
+  document.getElementById('navAvatar').textContent = '?';
+  document.getElementById('navName').textContent = 'Sign In';
+}
+
+// ── Profile dropdown ──
+function toggleProfileDropdown(){
+  if(!currentUser){
+    // Guest — show sign in overlay instead
+    document.getElementById('authOverlay').style.display = 'flex';
+    return;
+  }
+  const dd = document.getElementById('profileDropdown');
+  dd.classList.toggle('open');
+  if(dd.classList.contains('open')){
+    document.getElementById('dropdownName').textContent = currentUser?.name||'';
+    document.getElementById('dropdownHandle').textContent = '@'+(currentUser?.username||'');
+    setTimeout(()=>document.addEventListener('click', closeDropdownOnOutside, {once:true}), 50);
+  }
+}
+function closeDropdownOnOutside(e){
+  const dd=document.getElementById('profileDropdown');
+  const btn=document.getElementById('profileBtn');
+  if(!dd.contains(e.target)&&!btn.contains(e.target)) closeProfileDropdown();
+  else if(dd.classList.contains('open')) setTimeout(()=>document.addEventListener('click',closeDropdownOnOutside,{once:true}),50);
+}
+function closeProfileDropdown(){
+  document.getElementById('profileDropdown').classList.remove('open');
+}
+
+// ── Profile page ──
+function openProfilePage(section){
+  closeProfileDropdown();
+  if(!currentUser) return;
+  const p = document.getElementById('profilePage');
+  p.classList.add('open');
+
+  // Populate fields
+  document.getElementById('profileAvatarBig').textContent = currentUser.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  document.getElementById('profilePageName').textContent = currentUser.name;
+  document.getElementById('profilePageHandle').textContent = '@'+currentUser.username;
+  document.getElementById('prefNewName').value = currentUser.name;
+
+  const prefs = currentUser.prefs;
+  document.getElementById('prefBionic').checked = prefs.bionic||false;
+  document.getElementById('prefLargeText').checked = prefs.largeText||false;
+  document.getElementById('prefReduceMotion').checked = prefs.reduceMotion||false;
+  document.getElementById('prefWakeTime').value = prefs.wakeTime||'8:00 AM';
+  document.getElementById('prefFocusMins').value = prefs.focusMins||25;
+  document.getElementById('prefBreakMins').value = prefs.breakMins||5;
+
+  // Colour swatches
+  document.querySelectorAll('.color-swatch').forEach(s=>{
+    s.classList.toggle('selected', s.dataset.color===(prefs.accentColor||'#c084fc'));
+  });
+
+  // Sensory preview
+  const sensPreview = document.getElementById('sensoryPrefPreview');
+  if(currentUser.sensoryData){
+    const total = Object.values(currentUser.sensoryData).reduce((acc,v)=>acc+(v.items?.length||0),0);
+    sensPreview.textContent = `${total} personal items saved across ${Object.keys(currentUser.sensoryData).length} categories.`;
+    sensPreview.style.fontStyle='normal';
+  } else {
+    sensPreview.textContent = 'Using default items. Visit the Sensory Toolkit to personalise them.';
+  }
+
+  // Wind-down preview
+  const wdPreview = document.getElementById('winddownPrefPreview');
+  if(currentUser.windDownSteps && currentUser.windDownSteps.length){
+    const total = currentUser.windDownSteps.reduce((a,s)=>a+s.dur,0);
+    wdPreview.textContent = `${currentUser.windDownSteps.length}-step routine · ${total} minutes total.`;
+    wdPreview.style.fontStyle='normal';
+  } else {
+    wdPreview.textContent = 'No routine saved yet. Build one in the Wind-Down section.';
+  }
+
+  // Scroll to section if specified
+  if(section){
+    setTimeout(()=>{
+      const el=document.getElementById(section==='sensory'?'prefSensory':'prefWindDown');
+      if(el) el.scrollIntoView({behavior:'smooth'});
+    }, 200);
+  }
+}
+
+function closeProfilePage(){
+  document.getElementById('profilePage').classList.remove('open');
+}
+
+// ── Instant pref save (toggles) ──
+function savePrefInstant(){
+  if(!currentUser) return;
+  const bionic = document.getElementById('prefBionic').checked;
+  const largeText = document.getElementById('prefLargeText').checked;
+  const reduceMotion = document.getElementById('prefReduceMotion').checked;
+  currentUser.prefs.bionic = bionic;
+  currentUser.prefs.largeText = largeText;
+  currentUser.prefs.reduceMotion = reduceMotion;
+  persistUser();
+  // Apply instantly
+  bionicEnabled = bionic;
+  applyBionicState();
+  document.body.style.fontSize = largeText?'17px':'15px';
+  const existing=document.getElementById('reduceMotionStyle');
+  if(reduceMotion && !existing){
+    const s=document.createElement('style');s.id='reduceMotionStyle';
+    s.textContent='*{animation-duration:0.01ms!important;transition-duration:0.01ms!important}';
+    document.head.appendChild(s);
+  } else if(!reduceMotion && existing){ existing.remove(); }
+}
+
+function pickColor(swatch){
+  document.querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('selected'));
+  swatch.classList.add('selected');
+  const color = swatch.dataset.color;
+  if(currentUser){ currentUser.prefs.accentColor = color; persistUser(); }
+  applyAccentColor(color);
+}
+
+// ── Save all prefs ──
+function saveAllPrefs(){
+  if(!currentUser) return;
+  const newName = document.getElementById('prefNewName').value.trim();
+  if(newName) currentUser.name = newName;
+  currentUser.prefs.wakeTime = document.getElementById('prefWakeTime').value.trim();
+  currentUser.prefs.focusMins = parseInt(document.getElementById('prefFocusMins').value)||25;
+  currentUser.prefs.breakMins = parseInt(document.getElementById('prefBreakMins').value)||5;
+  currentUser.prefs.darkMode = darkModeEnabled;
+  currentUser.prefs.bionic = document.getElementById('prefBionic').checked;
+  currentUser.prefs.largeText = document.getElementById('prefLargeText').checked;
+  currentUser.prefs.reduceMotion = document.getElementById('prefReduceMotion').checked;
+  persistUser();
+  updateNavProfile();
+  document.getElementById('profilePageName').textContent = currentUser.name;
+  document.getElementById('profileAvatarBig').textContent = currentUser.name.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);
+  const msg = document.getElementById('prefSaveMsg');
+  msg.style.display='block';
+  setTimeout(()=>msg.style.display='none', 2500);
+  // Apply the defaults
+  if(currentUser.prefs.wakeTime) document.getElementById('wakeTime').value = currentUser.prefs.wakeTime;
+  if(currentUser.prefs.focusMins){ document.getElementById('focusMins').value = currentUser.prefs.focusMins; resetTimer(); }
+  if(currentUser.prefs.breakMins) document.getElementById('breakMins').value = currentUser.prefs.breakMins;
+}
+
+// ── Persist user to localStorage ──
+function persistUser(){
+  if(!currentUser) return;
+  const users = getAllUsers();
+  users[currentUser.username] = currentUser;
+  saveAllUsers(users);
+}
+
+// ── Save current tool state to profile ──
+function saveCurrentStateToProfile(){
+  if(!currentUser) return;
+  currentUser.sensoryData = JSON.parse(JSON.stringify(sensoryData));
+  if(windDownSteps && windDownSteps.length) currentUser.windDownSteps = windDownSteps;
+  persistUser();
+}
+
+// ── Override saveData to also sync with profile ──
+const _origSaveData = saveData;
+saveData = function(key, val){
+  _origSaveData(key, val);
+  if(!currentUser) return;
+  if(key==='sensoryData'){ currentUser.sensoryData = val; persistUser(); }
+  if(key==='windDownSteps'){ currentUser.windDownSteps = val; persistUser(); }
+  if(key==='bionicEnabled'){ currentUser.prefs.bionic = val; persistUser(); }
+};
+
+// ── Check session on load ──
+function checkSession(){
+  const session = getSession();
+  if(session && session.username){
+    const users = getAllUsers();
+    const user = users[session.username];
+    if(user){
+      currentUser = user;
+      document.getElementById('authOverlay').style.display = 'none';
+      applyUserProfile();
+      updateNavProfile();
+      return;
+    }
+  }
+  // No session — hide overlay and let them use as guest
+  document.getElementById('authOverlay').style.display = 'none';
+  updateNavProfileGuest();
+  initSensory();
+  tryLoadWindDown();
+}
+
+// Run on load — wait for full DOM
+document.addEventListener("DOMContentLoaded", checkSession);
+
+
+// ═══════════════════════
+// PAGE NAVIGATION
+// ═══════════════════════
+const ALL_PAGES = ['home','schedule','goblin','timer','braindump','onething','transition','sensory','winddown','spark','scripts'];
+let currentPage = 'home';
+
+function goToPage(id) {
+  // Hide all pages
+  ALL_PAGES.forEach(p => {
+    const el = document.getElementById('page-' + p);
+    if (el) { el.classList.remove('active'); }
+  });
+  // Show target page
+  const target = document.getElementById('page-' + id);
+  if (target) {
+    target.classList.add('active');
+    currentPage = id;
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    // Toggle nav-links visibility
+    if (id === 'home') {
+      document.querySelector('.nav-links').style.display = '';
+      document.body.classList.remove('on-tool-page');
+    } else {
+      document.querySelector('.nav-links').style.display = 'none';
+      document.body.classList.add('on-tool-page');
+    }
+    // Render script history when opening script builder
+    if (id === 'scripts') sbRenderHistory();
+    if (id === 'schedule') renderLibrary();
+  }
+}
+
+function goHome() {
+  goToPage('home');
+}
+
+// Patch nav-links to use goToPage instead of anchor scrolling
+document.querySelectorAll('.nav-link').forEach(a => {
+  const href = a.getAttribute('href');
+  if (href && href.startsWith('#')) {
+    const pageId = href.slice(1);
+    a.removeAttribute('href');
+    a.style.cursor = 'pointer';
+    a.addEventListener('click', () => goToPage(pageId));
+  }
+});
+
+
+// ═══════════════════════
+// SCRIPT BUILDER
+// ═══════════════════════
+let sbTone = 'Gentle';
+
+function sbSetTone(btn) {
+  document.querySelectorAll('.sb-tone-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  sbTone = btn.dataset.tone;
+}
+
+async function sbGenerate() {
+  const situation= document.getElementById('sb-situation').value;
+  const recipient= document.getElementById('sb-recipient').value.trim();
+  const context  = document.getElementById('sb-context').value.trim();
+  const btn      = document.getElementById('sb-generate-btn');
+  const errEl    = document.getElementById('sb-error');
+  const resultEl = document.getElementById('sb-result');
+
+  errEl.style.display = 'none';
+
+  if (!recipient){ sbShowError('Please enter who this message is for.'); return; }
+  if (!context)  { sbShowError("Please describe what's happening so the AI can write a relevant script."); return; }
+
+  btn.textContent = '✦ Writing your script…';
+  btn.disabled = true;
+  resultEl.style.display = 'none';
+
+  const toneGuide = {
+    Gentle: 'warm, empathetic, and soft — acknowledging feelings and prioritising the relationship',
+    Direct: 'clear, concise and confident — gets to the point without over-explaining',
+    Witty:  'light-hearted and slightly humorous while still being genuine and kind',
+    Formal: 'professional, polished and appropriate for a workplace or formal context'
+  };
+
+  const situationNotes = {
+    'Cancelling Plans':       "The person needs to cancel plans. They may feel guilty. The script should be apologetic but not overly so, and not require a detailed excuse.",
+    'Setting a Boundary':     "The person needs to set a limit on someone's behaviour. The script should be assertive but kind, and clear about what they need.",
+    'Asking for Help':        "The person needs to ask for help. They may find this vulnerable. The script should be direct but grateful.",
+    'Being Late':             "The person is running late. The script should be brief, apologetic, and give a rough ETA if possible.",
+    'Phone Call Script':      "The person has phone anxiety. Give them a structured script with an opening, main point, and closing line they can read aloud.",
+    'Asking for an Extension':"The person needs more time on a deadline. The script should be professional, take responsibility without over-explaining, and make a clear request.",
+    'Saying No':              "The person needs to decline something. The script should be clear and final without being harsh, and not over-justify.",
+    'Checking In':            "The person wants to reconnect after a gap. The script should feel warm and low-pressure, not guilt-heavy.",
+    'Other / Custom':         "Write a message suited to the specific situation described."
+  };
+
+  const systemPrompt = `You are a compassionate messaging assistant helping neurodivergent people (ADHD, autism) write messages for socially difficult situations.
+
+Your scripts are:
+- Authentic and human-sounding, not corporate or stiff
+- Appropriately brief — never pad unnecessarily
+- Free of excessive apology or self-deprecation
+- Clear about what the person needs
+- Written as the final message itself, ready to send — no intro, no explanation, no "Here is your script:"
+
+Situation context: ${situationNotes[situation] || 'Write a message suited to the situation described.'}`;
+
+  const userPrompt = `Situation: ${situation}
+Recipient: ${recipient}
+Tone: ${sbTone} — ${toneGuide[sbTone]}
+Details: ${context}
+
+Write the message now.`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 600,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: userPrompt }]
+      })
+    });
+
+    if (!response.ok) {
+      const err = await response.json().catch(() => ({}));
+      const msg = err?.error?.message || `API error ${response.status}`;
+      sbShowError(`Something went wrong: ${msg}`);
+      return;
+    }
+
+    const data = await response.json();
+    const result = data.content?.find(b => b.type === 'text')?.text || '';
+
+    document.getElementById('sb-output').textContent = result;
+    document.getElementById('sb-note').textContent = sbToneNote(sbTone);
+    resultEl.style.display = 'block';
+    resultEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    // Save to profile history
+    sbSaveToHistory(situation, recipient, sbTone, context, result);
+
+  } catch (err) {
+    sbShowError('Could not generate script. Please check your connection and try again.');
+    console.error(err);
+  } finally {
+    btn.textContent = '✦ Generate Script';
+    btn.disabled = false;
+  }
+}
+
+function sbShowError(msg) {
+  const el = document.getElementById('sb-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+}
+
+function sbToneNote(tone) {
+  const notes = {
+    Gentle: "💜 Remember: you don't owe anyone a detailed explanation. Sending something is always better than silence.",
+    Direct: "⚡ Direct doesn't mean cold. You can always soften a word or two before sending.",
+    Witty:  "😄 If it doesn't feel quite right, try regenerating — humour can be tricky to land.",
+    Formal: "🏢 Read it out loud before sending — formal scripts can sometimes sound stiff. Tweak anything that doesn't sound like you."
+  };
+  return notes[tone] || '';
+}
+
+function sbCopy() {
+  const text = document.getElementById('sb-output').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = event.target;
+    btn.textContent = '✓ Copied!';
+    setTimeout(() => btn.textContent = 'Copy ↗', 2000);
+  });
+}
+
+
+// ═══════════════════════
+// SCRIPT BUILDER HISTORY
+// ═══════════════════════
+
+function sbSaveToHistory(situation, recipient, tone, context, result) {
+  if (!currentUser) return;
+  if (!currentUser.scriptHistory) currentUser.scriptHistory = [];
+  // Add to front, keep max 20 entries
+  currentUser.scriptHistory.unshift({
+    id: Date.now(),
+    situation,
+    recipient,
+    tone,
+    context,
+    result,
+    date: new Date().toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' })
+  });
+  if (currentUser.scriptHistory.length > 20) {
+    currentUser.scriptHistory = currentUser.scriptHistory.slice(0, 20);
+  }
+  persistUser();
+  sbRenderHistory();
+}
+
+function sbRenderHistory() {
+  const section = document.getElementById('sb-history-section');
+  const list    = document.getElementById('sb-history-list');
+  if (!section || !list) return;
+
+  const history = currentUser?.scriptHistory || [];
+
+  if (!history.length) {
+    section.style.display = 'none';
+    return;
+  }
+
+  section.style.display = 'block';
+  list.innerHTML = '';
+
+  history.forEach(entry => {
+    const item = document.createElement('div');
+    item.className = 'script-history-item';
+    item.innerHTML = `
+      <div class="script-history-meta">
+        <div class="script-history-tags">
+          <span class="script-history-tag">${entry.situation}</span>
+          <span class="script-history-tag">${entry.tone}</span>
+        </div>
+        <span class="script-history-date">${entry.date}</span>
+      </div>
+      <div class="script-history-recipient" style="font-size:.72rem;color:var(--text-muted);margin-bottom:.35rem">To: ${entry.recipient}</div>
+      <div class="script-history-preview">${entry.result}</div>
+      <div class="script-history-actions">
+        <button class="script-history-btn" onclick="sbLoadFromHistory(${entry.id})">↩ Load</button>
+        <button class="script-history-btn" onclick="sbCopyFromHistory(${entry.id})">Copy</button>
+        <button class="script-history-btn danger" onclick="sbDeleteHistoryEntry(${entry.id})">Delete</button>
+      </div>`;
+    list.appendChild(item);
+  });
+}
+
+function sbLoadFromHistory(id) {
+  const entry = currentUser?.scriptHistory?.find(e => e.id === id);
+  if (!entry) return;
+  // Populate the form fields
+  document.getElementById('sb-situation').value = entry.situation;
+  document.getElementById('sb-recipient').value = entry.recipient;
+  document.getElementById('sb-context').value   = entry.context;
+  // Set tone button
+  sbTone = entry.tone;
+  document.querySelectorAll('.sb-tone-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.tone === entry.tone);
+  });
+  // Show the result
+  document.getElementById('sb-output').textContent = entry.result;
+  document.getElementById('sb-note').textContent   = sbToneNote(entry.tone);
+  document.getElementById('sb-result').style.display = 'block';
+  document.getElementById('sb-result').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function sbCopyFromHistory(id) {
+  const entry = currentUser?.scriptHistory?.find(e => e.id === id);
+  if (!entry) return;
+  navigator.clipboard.writeText(entry.result);
+}
+
+function sbDeleteHistoryEntry(id) {
+  if (!currentUser?.scriptHistory) return;
+  currentUser.scriptHistory = currentUser.scriptHistory.filter(e => e.id !== id);
+  persistUser();
+  sbRenderHistory();
+}
+
+function sbClearHistory() {
+  if (!currentUser) return;
+  currentUser.scriptHistory = [];
+  persistUser();
+  sbRenderHistory();
+}
+
+</script>
+
+</body>
+</html>
